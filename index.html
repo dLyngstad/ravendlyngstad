@@ -1,11 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Welcome to ravendlyngstad.net!</title>
+  <meta charset="UTF-8">
+  <title>Your Name – Artist Portfolio</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+    header {
+      background-color: #222;
+      color: white;
+      padding: 2rem;
+      text-align: center;
+    }
+    nav a {
+      color: white;
+      margin: 0 1rem;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    section {
+      padding: 2rem;
+      max-width: 800px;
+      margin: auto;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+    .gallery img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: #eee;
+      margin-top: 2rem;
+    }
+  </style>
 </head>
 <body>
-  <h1>Hello world!</h1>
-  <p>This is my new website hosted with GitHub Pages.</p>
+
+  <header>
+    <h1>Your Name</h1>
+    <p>Visual Artist & Painter</p>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section id="about">
+    <h2>About Me</h2>
+    <p>
+      Welcome to my art portfolio. I’m a visual artist focused on painting, expression, and texture. 
+      My work explores the connection between memory, emotion, and environment through layered surfaces and bold color.
+    </p>
+  </section>
+
+  <section id="gallery">
+    <h2>Gallery</h2>
+    <div class="gallery">
+      <img src="https://via.placeholder.com/400x300?text=Painting+1" alt="Painting 1">
+      <img src="https://via.placeholder.com/400x300?text=Painting+2" alt="Painting 2">
+      <img src="https://via.placeholder.com/400x300?text=Painting+3" alt="Painting 3">
+      <img src="https://via.placeholder.com/400x300?text=Painting+4" alt="Painting 4">
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>Want to get in touch? Send me an email at <a href="mailto:you@example.com">you@example.com</a></p>
+  </section>
+
+  <footer>
+    &copy; 2025 Your Name. All rights reserved.
+  </footer>
+
 </body>
 </html>
+
