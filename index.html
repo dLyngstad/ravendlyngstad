@@ -43,6 +43,25 @@
       background-color: #eee;
       margin-top: 2rem;
     }
+
+.sold-container {
+  position: relative;
+}
+
+.sold-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: red;
+  color: white;
+  padding: 5px 10px;
+  font-weight: bold;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  z-index: 10;
+}
+
   </style>
 </head>
 <body>
@@ -66,8 +85,15 @@
 
   <section id="gallery">
     <h2>Gallery</h2>
+
+    <div class="sold-container">
+  <img src="https://i.imgur.com/3lgWpD4.png" alt="Painting 1">
+  <div class="sold-badge">SOLD</div>
+</div>
+
+
     <div class="gallery">
-      <img src="https://i.imgur.com/3lgWpD4.png" alt="Painting 1">
+
       <img src="https://i.imgur.com/06JQisj.png" alt="Painting 2">
       <img src="https://i.imgur.com/PzQmFz8.png" alt="Painting 3">
       <img src="https://i.imgur.com/dSSbhvi.png" alt="Painting 4">
