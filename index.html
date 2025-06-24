@@ -10,33 +10,65 @@
       background-color: #f9f9f9;
       color: #333;
     }
+
     header {
       background-color: #222;
       color: white;
       padding: 2rem;
       text-align: center;
     }
+
     nav a {
       color: white;
       margin: 0 1rem;
       text-decoration: none;
       font-weight: bold;
     }
+
     section {
       padding: 2rem;
       max-width: 800px;
       margin: auto;
     }
+
     .gallery {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 1rem;
     }
+
     .gallery img {
       width: 100%;
       height: auto;
       border-radius: 8px;
+      cursor: zoom-in;
     }
+
+    .sold-container {
+      position: relative;
+    }
+
+    .sold-container img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    .sold-badge {
+      position: absolute;
+      top: 15px;
+      right: -35px;
+      background-color: red;
+      color: white;
+      padding: 5px 40px;
+      font-weight: bold;
+      font-size: 0.8rem;
+      transform: rotate(45deg);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      z-index: 10;
+      text-align: center;
+    }
+
     footer {
       text-align: center;
       padding: 1rem;
@@ -44,61 +76,44 @@
       margin-top: 2rem;
     }
 
-.sold-container {
-  position: relative;
-}
+    /* Lightbox styles */
+    .lightbox-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      flex-direction: column;
+      padding: 2rem;
+    }
 
-.sold-badge {
-  position: absolute;
-  top: 15px;
-  right: -35px;
-  background-color: red;
-  color: white;
-  padding: 5px 40px;
-  font-weight: bold;
-  font-size: 0.8rem;
-  transform: rotate(45deg);
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-  z-index: 10;
-  text-align: center;
-}
+    .lightbox-overlay.active {
+      display: flex;
+    }
 
-    <!-- LIGHTBOX DISPLAY STYLESHEET-->
-<style>
-  .lightbox-img {
-    cursor: zoom-in;
-    transition: transform 0.2s ease;
-  }
+    .lightbox-overlay img {
+      max-width: 90%;
+      max-height: 80vh;
+      border-radius: 8px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.6);
+    }
 
-  .lightbox-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.8);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-  }
-
-  .lightbox-overlay img {
-    max-width: 90%;
-    max-height: 90%;
-    box-shadow: 0 0 20px rgba(0,0,0,0.6);
-    border-radius: 8px;
-  }
-
-  .lightbox-overlay.active {
-    display: flex;
-  }
-      <!-- END OF LIGHTBOX DISPLAY STYLESHEET-->
-
+    #lightbox-info {
+      color: white;
+      margin-top: 1rem;
+      font-size: 1rem;
+      text-align: center;
+      font-style: italic;
+      font-family: Georgia, serif;
+      text-shadow: 1px 1px 2px black;
+    }
   </style>
 </head>
-
-
 <body>
 
   <header>
@@ -106,69 +121,76 @@
     <p>Landskap</p>
     <nav>
       <a href="#about">About</a>
-      <a href="#gallery">Galleri</a>
-      <a href="#contact">Kontakt</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
     </nav>
   </header>
 
   <section id="about">
-    <h2>Hvem</h2>
-    <p>
-      Malerier av Raven D. Lyngstad. <br>
-Alle malerier er gjort utendørs på stedet.
-
-    </p>
+    <h2>About Me</h2>
+    <p>Malerier av Raven D. Lyngstad</p>
   </section>
 
   <section id="gallery">
     <h2>Gallery</h2>
-<div class="gallery">
-    <div class="sold-container">
-  <img class="lightbox-img" src="https://i.imgur.com/3lgWpD4.png" alt="Painting 1">
-  <div class="sold-badge">SOLGT</div>
-</div>
+    <div class="gallery">
+      <div class="sold-container">
+        <img class="lightbox-img" 
+             src="https://i.imgur.com/3lgWpD4.png" 
+             alt="Painting 1" 
+             data-info="Fjordlandskap – 60x80 cm – Olje på lerret">
+        <div class="sold-badge">SOLD</div>
+      </div>
 
+      <img class="lightbox-img" 
+           src="https://i.imgur.com/06JQisj.png" 
+           alt="Painting 2" 
+           data-info="Solnedgang i lavlandet – 50x70 cm – Akryl">
 
-    
+      <img class="lightbox-img" 
+           src="https://i.imgur.com/PzQmFz8.png" 
+           alt="Painting 3" 
+           data-info="Fjell og furu – 40x60 cm – Olje på lerret">
 
-      <img class="lightbox-img" src="https://i.imgur.com/06JQisj.png" alt="Painting 2">
-      <img class="lightbox-img" src="https://i.imgur.com/PzQmFz8.png" alt="Painting 3">
-      <img class="lightbox-img" src="https://i.imgur.com/dSSbhvi.png" alt="Painting 4">
-      <img class="lightbox-img" src="https://i.imgur.com/CNMNHiw.png" alt="Painting 5">
-
+      <img class="lightbox-img" 
+           src="https://i.imgur.com/dSSbhvi.png" 
+           alt="Painting 4" 
+           data-info="Blå time – 80x100 cm – Akryl på plate">
     </div>
   </section>
 
   <section id="contact">
-    <h2>Kontakt</h2>
-    <p> For kontakt og henvendelser: <a href="mailto:ravendlyngstad.com">ravendlyngstad@gmail.com</a></p>
+    <h2>Contact</h2>
+    <p>For kontakt og henvendelser: <a href="mailto:ravendlyngstad@gmail.com">ravendlyngstad@gmail.com</a></p>
   </section>
 
   <footer>
     &copy; 2025 Raven D. Lyngstad. All rights reserved.
   </footer>
 
-<div class="lightbox-overlay" id="lightbox">
-  <img src="" alt="Full Size Art">
-</div>
+  <!-- Lightbox overlay -->
+  <div class="lightbox-overlay" id="lightbox">
+    <img src="" alt="Full Size Art" id="lightbox-img">
+    <p id="lightbox-info"></p>
+  </div>
 
-  
-<script>
-  const lightbox = document.getElementById('lightbox');
-  const lightboxImg = lightbox.querySelector('img');
+  <script>
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxInfo = document.getElementById('lightbox-info');
 
-  document.querySelectorAll('.lightbox-img').forEach(img => {
-    img.addEventListener('click', () => {
-      lightboxImg.src = img.src;
-      lightbox.classList.add('active');
+    document.querySelectorAll('.lightbox-img').forEach(img => {
+      img.addEventListener('click', () => {
+        lightboxImg.src = img.src;
+        lightboxInfo.textContent = img.getAttribute('data-info') || '';
+        lightbox.classList.add('active');
+      });
     });
-  });
 
-  lightbox.addEventListener('click', () => {
-    lightbox.classList.remove('active');
-  });
-</script>
+    lightbox.addEventListener('click', () => {
+      lightbox.classList.remove('active');
+    });
+  </script>
 
 </body>
 </html>
-
