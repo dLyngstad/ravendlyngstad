@@ -96,9 +96,18 @@
       display: flex;
     }
 
-    .lightbox-overlay img {
+    #zoom-wrapper {
+      position: relative;
       max-width: 90%;
       max-height: 80vh;
+      overflow: hidden;
+      cursor: zoom-in;
+    }
+
+    #zoom-image {
+      width: 100%;
+      transition: transform 0.2s ease;
+      display: block;
       border-radius: 8px;
       box-shadow: 0 0 20px rgba(0,0,0,0.6);
     }
@@ -129,8 +138,7 @@
   <section id="about">
     <h2>About Me</h2>
     <p>Malerier av Raven D. Lyngstad</p><br>
-<p>Alle malerier er malt fullstendig på stedet.</p>
-
+    <p>Alle malerier er malt fullstendig på stedet.</p>
   </section>
 
   <section id="gallery">
@@ -139,6 +147,7 @@
       <div class="sold-container">
         <img class="lightbox-img" 
              src="https://i.imgur.com/3lgWpD4.png" 
+             data-highres="https://i.imgur.com/3lgWpD4.png"
              alt="Painting 1" 
              data-info="Broen over ILA bekken – 21x30 cm – Olje på plate">
         <div class="sold-badge">SOLGT</div>
@@ -146,40 +155,42 @@
 
       <img class="lightbox-img" 
            src="https://i.imgur.com/06JQisj.png" 
+           data-highres="https://i.imgur.com/06JQisj.png"
            alt="Painting 2" 
-           data-info="Estenstad  – 21x30 cm – Olje på plate">
+           data-info="Estenstad – 21x30 cm – Olje på plate">
 
       <img class="lightbox-img" 
            src="https://i.imgur.com/PzQmFz8.png" 
+           data-highres="https://i.imgur.com/PzQmFz8.png"
            alt="Painting 3" 
            data-info="Våt åker I regnet – 21x30 cm – Olje på plate">
 
       <img class="lightbox-img" 
            src="https://i.imgur.com/dSSbhvi.png" 
+           data-highres="https://i.imgur.com/dSSbhvi.png"
            alt="Painting 4" 
            data-info="Mørk åker og skog i regn – 21x30 cm – Olje på plate">
 
       <div class="sold-container">
-      <img class="lightbox-img" 
-           src="https://i.imgur.com/iuFfUWN.png" 
-           alt="Painting 5" 
-           data-info="Rød åker med blomster – 21x30 cm – Olje på plate">
-      <div class="sold-badge">SOLGT</div>
+        <img class="lightbox-img" 
+             src="https://i.imgur.com/iuFfUWN.png" 
+             data-highres="https://i.imgur.com/iuFfUWN.png"
+             alt="Painting 5" 
+             data-info="Rød åker med blomster – 21x30 cm – Olje på plate">
+        <div class="sold-badge">SOLGT</div>
       </div>
-        
+
       <img class="lightbox-img" 
            src="https://i.imgur.com/wLMtBD6.png" 
+           data-highres="https://i.imgur.com/wLMtBD6.png"
            alt="Painting 6" 
            data-info="Smørblomster på brun åker – 21x30 cm – Olje på plate">
 
- <img class="lightbox-img" 
+      <img class="lightbox-img" 
            src="https://i.imgur.com/BphHUe8.png" 
-           alt="Painting 6" 
+           data-highres="https://i.imgur.com/BphHUe8.png"
+           alt="Painting 7" 
            data-info="Sol på åker i vinter – 21x30 cm – Olje på plate">
-
-
-
-
     </div>
   </section>
 
@@ -192,20 +203,24 @@
     &copy; 2025 Raven D. Lyngstad. All rights reserved.
   </footer>
 
-  <!-- Lightbox overlay -->
+  <!-- Lightbox overlay with zoom -->
   <div class="lightbox-overlay" id="lightbox">
-    <img src="" alt="Full Size Art" id="lightbox-img">
+    <div id="zoom-wrapper">
+      <img src="" alt="Full Size Art" id="zoom-image">
+    </div>
     <p id="lightbox-info"></p>
   </div>
 
   <script>
     const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightbox-img');
+    const zoomWrapper = document.getElementById('zoom-wrapper');
+    const zoomImage = document.getElementById('zoom-image');
     const lightboxInfo = document.getElementById('lightbox-info');
 
     document.querySelectorAll('.lightbox-img').forEach(img => {
       img.addEventListener('click', () => {
-        lightboxImg.src = img.src;
+        const highResSrc = img.getAttribute('data-highres') || img.src;
+        zoomImage.src = highResSrc;
         lightboxInfo.textContent = img.getAttribute('data-info') || '';
         lightbox.classList.add('active');
       });
@@ -213,6 +228,19 @@
 
     lightbox.addEventListener('click', () => {
       lightbox.classList.remove('active');
+      zoomImage.style.transform = 'scale(1)';
+    });
+
+    zoomWrapper.addEventListener('mousemove', (e) => {
+      const rect = zoomWrapper.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width;
+      const y = (e.clientY - rect.top) / rect.height;
+      zoomImage.style.transformOrigin = `${x * 100}% ${y * 100}%`;
+      zoomImage.style.transform = 'scale(2.5)';
+    });
+
+    zoomWrapper.addEventListener('mouseleave', () => {
+      zoomImage.style.transform = 'scale(1)';
     });
   </script>
 
