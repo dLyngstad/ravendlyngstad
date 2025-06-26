@@ -218,38 +218,54 @@
     <p id="lightbox-info"></p>
   </div>
 
-  <script>
-    const lightbox = document.getElementById('lightbox');
-    const zoomWrapper = document.getElementById('zoom-wrapper');
-    const zoomImage = document.getElementById('zoom-image');
-    const lightboxInfo = document.getElementById('lightbox-info');
+<script>
+  const lightbox = document.getElementById('lightbox');
+  const zoomWrapper = document.getElementById('zoom-wrapper');
+  const zoomImage = document.getElementById('zoom-image');
+  const lightboxInfo = document.getElementById('lightbox-info');
 
-    document.querySelectorAll('.lightbox-img').forEach(img => {
-      img.addEventListener('click', () => {
-        const highResSrc = img.getAttribute('data-highres') || img.src;
-        zoomImage.src = highResSrc;
-        lightboxInfo.textContent = img.getAttribute('data-info') || '';
-        lightbox.classList.add('active');
-      });
-    });
+  let zoomActive = false;
 
-    lightbox.addEventListener('click', () => {
-      lightbox.classList.remove('active');
+  document.querySelectorAll('.lightbox-img').forEach(img => {
+    img.addEventListener('click', () => {
+      const highResSrc = img.getAttribute('data-highres') || img.src;
+      zoomImage.src = highResSrc;
+      lightboxInfo.textContent = img.getAttribute('data-info') || '';
+      lightbox.classList.add('active');
+
+      // Start zoomed out
+      zoomActive = false;
       zoomImage.style.transform = 'scale(1)';
+      zoomImage.style.transformOrigin = 'center center';
     });
+  });
 
-    zoomWrapper.addEventListener('mousemove', (e) => {
-      const rect = zoomWrapper.getBoundingClientRect();
-      const x = (e.clientX - rect.left) / rect.width;
-      const y = (e.clientY - rect.top) / rect.height;
-      zoomImage.style.transformOrigin = `${x * 100}% ${y * 100}%`;
-      zoomImage.style.transform = 'scale(2.5)';
-    });
+  // Close lightbox on click anywhere
+  lightbox.addEventListener('click', () => {
+    lightbox.classList.remove('active');
+    zoomImage.style.transform = 'scale(1)';
+    zoomActive = false;
+  });
 
-    zoomWrapper.addEventListener('mouseleave', () => {
-      zoomImage.style.transform = 'scale(1)';
-    });
-  </script>
+  zoomWrapper.addEventListener('mouseenter', () => {
+    zoomActive = true;
+  });
+
+  zoomWrapper.addEventListener('mousemove', (e) => {
+    if (!zoomActive) return;
+
+    const rect = zoomWrapper.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width;
+    const y = (e.clientY - rect.top) / rect.height;
+
+    zoomImage.style.transformOrigin = `${x * 100}% ${y * 100}%`;
+    zoomImage.style.transform = 'scale(1.5)';
+  });
+
+  zoomWrapper.addEventListener('mouseleave', () => {
+    zoomImage.style.transform = 'scale(1)';
+  });
+</script>
 
 </body>
 </html>
