@@ -104,13 +104,13 @@
       cursor: zoom-in;
     }
 
-    #zoom-image {
-      width: 100%;
-      transition: transform 0.2s ease;
-      display: block;
-      border-radius: 8px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.6);
-    }
+#zoom-image {
+  width: 100%;
+  transition: transform 0.3s ease, transform-origin 0.3s ease;
+  display: block;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.6);
+}
 
     #lightbox-info {
       color: white;
@@ -224,8 +224,7 @@
   const zoomImage = document.getElementById('zoom-image');
   const lightboxInfo = document.getElementById('lightbox-info');
 
-  let zoomActive = false;
-
+  // Open lightbox
   document.querySelectorAll('.lightbox-img').forEach(img => {
     img.addEventListener('click', () => {
       const highResSrc = img.getAttribute('data-highres') || img.src;
@@ -233,40 +232,32 @@
       lightboxInfo.textContent = img.getAttribute('data-info') || '';
       lightbox.classList.add('active');
 
-      // Start zoomed out
-      zoomActive = false;
+      // Reset zoom state
       zoomImage.style.transform = 'scale(1)';
       zoomImage.style.transformOrigin = 'center center';
     });
   });
 
-  // Close lightbox on click anywhere
+  // Close lightbox
   lightbox.addEventListener('click', () => {
     lightbox.classList.remove('active');
     zoomImage.style.transform = 'scale(1)';
-    zoomActive = false;
+    zoomImage.style.transformOrigin = 'center center';
   });
 
-  zoomWrapper.addEventListener('mouseenter', () => {
-    zoomActive = true;
- zoomImage.style.transform = 'scale(1)';
-  zoomImage.style.transformOrigin = 'center center';
-
-  });
-
+  // Zoom logic
   zoomWrapper.addEventListener('mousemove', (e) => {
-    if (!zoomActive) return;
-
     const rect = zoomWrapper.getBoundingClientRect();
     const x = (e.clientX - rect.left) / rect.width;
     const y = (e.clientY - rect.top) / rect.height;
 
     zoomImage.style.transformOrigin = `${x * 100}% ${y * 100}%`;
-    zoomImage.style.transform = 'scale(2)';
+    zoomImage.style.transform = 'scale(1.3)';
   });
 
   zoomWrapper.addEventListener('mouseleave', () => {
-    zoomImage.style.transform = 'scale(0.8)';
+    zoomImage.style.transform = 'scale(1)';
+    zoomImage.style.transformOrigin = 'center center';
   });
 </script>
 
