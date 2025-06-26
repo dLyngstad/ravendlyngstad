@@ -249,6 +249,9 @@
 
   zoomWrapper.addEventListener('mouseenter', () => {
     zoomActive = true;
+ zoomImage.style.transform = 'scale(1)';
+  zoomImage.style.transformOrigin = 'center center';
+
   });
 
   zoomWrapper.addEventListener('mousemove', (e) => {
