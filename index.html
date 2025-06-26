@@ -259,11 +259,11 @@
     const y = (e.clientY - rect.top) / rect.height;
 
     zoomImage.style.transformOrigin = `${x * 100}% ${y * 100}%`;
-    zoomImage.style.transform = 'scale(1.5)';
+    zoomImage.style.transform = 'scale(0.5)';
   });
 
   zoomWrapper.addEventListener('mouseleave', () => {
-    zoomImage.style.transform = 'scale(1)';
+    zoomImage.style.transform = 'scale(0.5)';
   });
 </script>
 
