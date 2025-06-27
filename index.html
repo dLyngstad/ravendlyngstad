@@ -98,6 +98,15 @@
       display: flex;
     }
 
+    /* New wrapper for lightbox content */
+    .lightbox-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+    }
+
     .zoom-container {
       display: flex;
       gap: 2rem;
@@ -120,8 +129,7 @@
     #lens {
       position: absolute;
       border: 2px solid #000;
-      width: 100px;
-      height: 100px;
+      /* Width and height are now dynamic */
       opacity: 0.4;
       background-color: white;
       cursor: crosshair;
@@ -140,6 +148,30 @@
     #zoomed-image {
       position: absolute;
     }
+
+    /* New styles for the zoom slider controls */
+    .zoom-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: white;
+      font-family: Arial, sans-serif;
+      background: rgba(0,0,0,0.4);
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      user-select: none;
+    }
+
+    #zoom-slider {
+      cursor: pointer;
+    }
+
+    #zoom-value {
+      min-width: 45px; /* Prevents layout shift as value changes */
+      text-align: left;
+      font-weight: bold;
+    }
+
   </style>
 </head>
 <body>
@@ -187,13 +219,20 @@
   </footer>
 
   <div class="lightbox-overlay" id="lightbox">
-    <div class="zoom-container">
-      <div class="image-area">
-        <img id="main-image" src="" alt="Zoom image">
-        <div id="lens"></div>
+    <div class="lightbox-content">
+      <div class="zoom-container">
+        <div class="image-area">
+          <img id="main-image" src="" alt="Zoom image">
+          <div id="lens"></div>
+        </div>
+        <div class="zoomed-area">
+          <img id="zoomed-image" src="" alt="Zoomed">
+        </div>
       </div>
-      <div class="zoomed-area">
-        <img id="zoomed-image" src="" alt="Zoomed">
+      <div class="zoom-controls">
+        <label for="zoom-slider">Zoom</label>
+        <input type="range" id="zoom-slider" min="2" max="10" step="0.1" value="4">
+        <span id="zoom-value">4.0x</span>
       </div>
     </div>
   </div>
@@ -204,51 +243,79 @@
     const mainImage = document.getElementById('main-image');
     const zoomedImage = document.getElementById('zoomed-image');
     const zoomedArea = document.querySelector('.zoomed-area');
+    const zoomSlider = document.getElementById('zoom-slider');
+    const zoomValue = document.getElementById('zoom-value');
+
+    let lastMouseEvent = null; // To store the last mouse position
 
     document.querySelectorAll('.lightbox-img').forEach(img => {
       img.addEventListener('click', () => {
         const highResSrc = img.getAttribute('data-highres') || img.src;
-        
         mainImage.src = highResSrc;
         zoomedImage.src = highResSrc;
-
+        
         mainImage.onload = () => {
-          const ratioX = zoomedArea.offsetWidth / lens.offsetWidth;
-          const ratioY = zoomedArea.offsetHeight / lens.offsetHeight;
-
-          zoomedImage.style.width = `${mainImage.offsetWidth * ratioX}px`;
-          zoomedImage.style.height = `${mainImage.offsetHeight * ratioY}px`;
-          
+          // Set the initial zoom based on the slider's default value
+          applyZoom(); 
           lightbox.classList.add('active');
         };
       });
     });
 
     lightbox.addEventListener('click', (e) => {
+      // Close lightbox if the dark overlay is clicked
       if (e.target === lightbox) {
         lightbox.classList.remove('active');
         lens.style.display = 'none';
+        lastMouseEvent = null; // Reset stored mouse position
       }
     });
+
+    // Add event listener for the zoom slider
+    zoomSlider.addEventListener('input', applyZoom);
 
     mainImage.addEventListener('mousemove', moveLens);
     lens.addEventListener('mousemove', moveLens);
     mainImage.addEventListener('mouseenter', () => lens.style.display = 'block');
     mainImage.addEventListener('mouseleave', () => lens.style.display = 'none');
 
+    /**
+     * This function is now the heart of the zoom logic. It's called
+     * both on page load and when the slider is moved.
+     */
+    function applyZoom() {
+      const zoomLevel = parseFloat(zoomSlider.value);
+      zoomValue.textContent = `${zoomLevel.toFixed(1)}x`;
+
+      // 1. Resize the lens. A higher zoom level requires a smaller lens.
+      const newLensWidth = zoomedArea.offsetWidth / zoomLevel;
+      const newLensHeight = zoomedArea.offsetHeight / zoomLevel;
+      lens.style.width = `${newLensWidth}px`;
+      lens.style.height = `${newLensHeight}px`;
+
+      // 2. Resize the zoomed image container based on the zoom level.
+      zoomedImage.style.width = `${mainImage.offsetWidth * zoomLevel}px`;
+      zoomedImage.style.height = `${mainImage.offsetHeight * zoomLevel}px`;
+
+      // 3. Reposition the view based on the last known cursor position.
+      // This ensures the view doesn't jump to the corner when you change zoom.
+      if (lastMouseEvent) {
+        moveLens(lastMouseEvent);
+      }
+    }
+
     function moveLens(e) {
+      // Store the latest mouse event so we know where the cursor is
+      lastMouseEvent = e;
       const mainRect = mainImage.getBoundingClientRect();
 
       // --- 1. Position the visual lens based on cursor ---
-      // Get cursor position relative to the main image
       let cursorX = e.clientX - mainRect.left;
       let cursorY = e.clientY - mainRect.top;
 
-      // Center the lens on the cursor
       let lensX = cursorX - (lens.offsetWidth / 2);
       let lensY = cursorY - (lens.offsetHeight / 2);
 
-      // Keep the lens from moving off the image
       lensX = Math.max(0, Math.min(lensX, mainImage.offsetWidth - lens.offsetWidth));
       lensY = Math.max(0, Math.min(lensY, mainImage.offsetHeight - lens.offsetHeight));
       
@@ -256,15 +323,12 @@
       lens.style.top = `${lensY}px`;
 
       // --- 2. Position the zoomed image based on cursor ---
-      // This logic is now independent of the lens's final position, avoiding border issues.
       const ratioX = zoomedImage.offsetWidth / mainImage.offsetWidth;
       const ratioY = zoomedImage.offsetHeight / mainImage.offsetHeight;
 
-      // Calculate the position of the zoomed image
       let zoomedLeft = cursorX * ratioX - (zoomedArea.offsetWidth / 2);
       let zoomedTop = cursorY * ratioY - (zoomedArea.offsetHeight / 2);
 
-      // Keep the zoomed image from showing empty space
       zoomedLeft = Math.max(0, Math.min(zoomedLeft, zoomedImage.offsetWidth - zoomedArea.offsetWidth));
       zoomedTop = Math.max(0, Math.min(zoomedTop, zoomedImage.offsetHeight - zoomedArea.offsetHeight));
 
@@ -275,3 +339,13 @@
 
 </body>
 </html>
+
+### Summary of New Features
+
+1.  **Zoom Slider HTML:** Inside the lightbox, there is now a `div` with the class `.zoom-controls` that contains a `label`, an `<input type="range">` slider, and a `span` to display the current zoom value (e.g., "4.0x").
+2.  **Updated CSS:** I've added styles for the new `.zoom-controls` to make them look clean and integrate well with the dark overlay.
+3.  **Dynamic JavaScript Logic:**
+    * A new function, `applyZoom()`, now controls all the sizing logic.
+    * When you move the slider, this function recalculates the required size for both the lens and the high-resolution image.
+    * **Smaller Lens for Higher Zoom:** As you increase the zoom, the lens on the left image gets smaller, which intuitively represents looking at a smaller, more detailed area.
+    * **Smooth Updates:** The script saves your last mouse position. When you adjust the zoom, it re-centers the magnified view on that exact spot, so the image doesn't jump back to the corner.
