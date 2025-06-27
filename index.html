@@ -4,6 +4,11 @@
   <meta charset="UTF-8">
   <title>Raven D. Lyngstad – Maleri</title>
   <style>
+    /* Add box-sizing to make width/height calculations include borders */
+    * {
+        box-sizing: border-box;
+    }
+
     body {
       font-family: Arial, sans-serif;
       margin: 0;
@@ -115,8 +120,8 @@
     #lens {
       position: absolute;
       border: 2px solid #000;
-      width: 100px; /* Lens size */
-      height: 100px; /* Lens size */
+      width: 100px;
+      height: 100px;
       opacity: 0.4;
       background-color: white;
       cursor: crosshair;
@@ -125,8 +130,8 @@
     }
 
     .zoomed-area {
-      width: 400px;  /* Magnified view size */
-      height: 400px; /* Magnified view size */
+      width: 400px;
+      height: 400px;
       overflow: hidden;
       border: 1px solid #ccc;
       position: relative;
@@ -134,7 +139,6 @@
 
     #zoomed-image {
       position: absolute;
-      /* The width and height are now set dynamically by JavaScript */
     }
   </style>
 </head>
@@ -208,19 +212,13 @@
         mainImage.src = highResSrc;
         zoomedImage.src = highResSrc;
 
-        // Wait for the main image to load to get its accurate dimensions
         mainImage.onload = () => {
-          // Calculate the true magnification ratio based on the size of the
-          // zoomed-in view container relative to the lens size.
           const ratioX = zoomedArea.offsetWidth / lens.offsetWidth;
           const ratioY = zoomedArea.offsetHeight / lens.offsetHeight;
 
-          // Dynamically set the dimensions of the high-resolution image.
-          // This is the key to making the zoom align perfectly.
           zoomedImage.style.width = `${mainImage.offsetWidth * ratioX}px`;
           zoomedImage.style.height = `${mainImage.offsetHeight * ratioY}px`;
           
-          // Now that setup is complete, display the lightbox.
           lightbox.classList.add('active');
         };
       });
@@ -239,32 +237,39 @@
     mainImage.addEventListener('mouseleave', () => lens.style.display = 'none');
 
     function moveLens(e) {
-      const rect = mainImage.getBoundingClientRect();
-      
-      // Calculate cursor position relative to the main image
-      const x = e.clientX - rect.left - (lens.offsetWidth / 2);
-      const y = e.clientY - rect.top - (lens.offsetHeight / 2);
+      const mainRect = mainImage.getBoundingClientRect();
 
-      // Define the maximum positions for the lens to keep it within bounds
-      const maxX = mainImage.offsetWidth - lens.offsetWidth;
-      const maxY = mainImage.offsetHeight - lens.offsetHeight;
+      // --- 1. Position the visual lens based on cursor ---
+      // Get cursor position relative to the main image
+      let cursorX = e.clientX - mainRect.left;
+      let cursorY = e.clientY - mainRect.top;
 
-      // Constrain the lens position to the image boundaries
-      const lensX = Math.max(0, Math.min(x, maxX));
-      const lensY = Math.max(0, Math.min(y, maxY));
+      // Center the lens on the cursor
+      let lensX = cursorX - (lens.offsetWidth / 2);
+      let lensY = cursorY - (lens.offsetHeight / 2);
+
+      // Keep the lens from moving off the image
+      lensX = Math.max(0, Math.min(lensX, mainImage.offsetWidth - lens.offsetWidth));
+      lensY = Math.max(0, Math.min(lensY, mainImage.offsetHeight - lens.offsetHeight));
       
-      // Apply the constrained position to the lens
       lens.style.left = `${lensX}px`;
       lens.style.top = `${lensY}px`;
-      
-      // The ratio of the zoomed image's size to the main image's size.
-      // This works correctly now because we sized #zoomed-image in the .onload event
-      const cx = zoomedImage.offsetWidth / mainImage.offsetWidth;
-      const cy = zoomedImage.offsetHeight / mainImage.offsetHeight;
 
-      // Move the zoomed image in the opposite direction of the lens, scaled by the ratio.
-      zoomedImage.style.left = `-${lensX * cx}px`;
-      zoomedImage.style.top = `-${lensY * cy}px`;
+      // --- 2. Position the zoomed image based on cursor ---
+      // This logic is now independent of the lens's final position, avoiding border issues.
+      const ratioX = zoomedImage.offsetWidth / mainImage.offsetWidth;
+      const ratioY = zoomedImage.offsetHeight / mainImage.offsetHeight;
+
+      // Calculate the position of the zoomed image
+      let zoomedLeft = cursorX * ratioX - (zoomedArea.offsetWidth / 2);
+      let zoomedTop = cursorY * ratioY - (zoomedArea.offsetHeight / 2);
+
+      // Keep the zoomed image from showing empty space
+      zoomedLeft = Math.max(0, Math.min(zoomedLeft, zoomedImage.offsetWidth - zoomedArea.offsetWidth));
+      zoomedTop = Math.max(0, Math.min(zoomedTop, zoomedImage.offsetHeight - zoomedArea.offsetHeight));
+
+      zoomedImage.style.left = `-${zoomedLeft}px`;
+      zoomedImage.style.top = `-${zoomedTop}px`;
     }
  </script>
 
