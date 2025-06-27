@@ -195,7 +195,7 @@
     </div>
   </div>
 
-  <script>
+ <script>
     const lightbox = document.getElementById('lightbox');
     const lens = document.getElementById('lens');
     const mainImage = document.getElementById('main-image');
@@ -205,8 +205,10 @@
       img.addEventListener('click', () => {
         const src = img.getAttribute('data-highres') || img.src;
         mainImage.src = src;
+        zoomedImage.onload = () => {
+          lightbox.classList.add('active');
+        };
         zoomedImage.src = src;
-        lightbox.classList.add('active');
       });
     });
 
@@ -236,11 +238,11 @@
       lens.style.left = lensX + "px";
       lens.style.top = lensY + "px";
 
-const cx = zoomedImage.offsetWidth / mainImage.offsetWidth;
-const cy = zoomedImage.offsetHeight / mainImage.offsetHeight;
+      const cx = zoomedImage.naturalWidth / mainImage.clientWidth;
+      const cy = zoomedImage.naturalHeight / mainImage.clientHeight;
 
-zoomedImage.style.left = -(lensX * cx) + "px";
-zoomedImage.style.top = -(lensY * cy) + "px";
+      zoomedImage.style.left = -(lensX * cx) + "px";
+      zoomedImage.style.top = -(lensY * cy) + "px";
     }
   </script>
 
