@@ -236,8 +236,11 @@
       lens.style.left = lensX + "px";
       lens.style.top = lensY + "px";
 
-      zoomedImage.style.left = -(lensX * 3) + "px";
-      zoomedImage.style.top = -(lensY * 3) + "px";
+const cx = zoomedImage.offsetWidth / mainImage.offsetWidth;
+const cy = zoomedImage.offsetHeight / mainImage.offsetHeight;
+
+zoomedImage.style.left = -(lensX * cx) + "px";
+zoomedImage.style.top = -(lensY * cy) + "px";
     }
   </script>
 
