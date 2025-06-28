@@ -256,8 +256,10 @@
         
         mainImage.onload = () => {
           // Set the initial zoom based on the slider's default value
-          applyZoom(); 
+         
           lightbox.classList.add('active');
+        applyZoom(); 
+
         };
       });
     });
