@@ -342,12 +342,3 @@
 </body>
 </html>
 
-### Summary of New Features
-
-1.  **Zoom Slider HTML:** Inside the lightbox, there is now a `div` with the class `.zoom-controls` that contains a `label`, an `<input type="range">` slider, and a `span` to display the current zoom value (e.g., "4.0x").
-2.  **Updated CSS:** I've added styles for the new `.zoom-controls` to make them look clean and integrate well with the dark overlay.
-3.  **Dynamic JavaScript Logic:**
-    * A new function, `applyZoom()`, now controls all the sizing logic.
-    * When you move the slider, this function recalculates the required size for both the lens and the high-resolution image.
-    * **Smaller Lens for Higher Zoom:** As you increase the zoom, the lens on the left image gets smaller, which intuitively represents looking at a smaller, more detailed area.
-    * **Smooth Updates:** The script saves your last mouse position. When you adjust the zoom, it re-centers the magnified view on that exact spot, so the image doesn't jump back to the corner.
