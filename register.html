@@ -78,12 +78,12 @@ ID på maleriet finner du på baksiden. <br>
   <div id="status"></div>
 
   <script>
-    emailjs.init("YOUR_PUBLIC_KEY_HERE"); // Replace this with your EmailJS public key
+    emailjs.init("pGCjjy87icYJXKLC7"); // Replace this with your EmailJS public key
 
     document.getElementById('painting-form').addEventListener('submit', function(e) {
       e.preventDefault();
 
-      emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
+      emailjs.send("service_awhaksa", "template_qmmq6ko", {
         painting_id: document.getElementById("painting-id").value,
         owner_name: document.getElementById("owner-name").value,
         email: document.getElementById("email").value,
