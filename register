@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Registrer maleri | Raven D. Lyngstad</title>
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      padding: 2rem;
+      max-width: 600px;
+      margin: auto;
+    }
+    h1 {
+      text-align: center;
+    }
+    form {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    label {
+      display: block;
+      margin-top: 1rem;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 0.5rem;
+      margin-top: 0.5rem;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      margin-top: 1.5rem;
+      padding: 0.75rem;
+      width: 100%;
+      background-color: #222;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+    #status {
+      margin-top: 1rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h1>Registrer ditt maleri</h1>
+  <form id="painting-form">
+    <label for="painting-id">ID på maleriet:</label>
+    <input type="text" id="painting-id" name="painting_id" required>
+
+    <label for="owner-name">Ditt navn:</label>
+    <input type="text" id="owner-name" name="owner_name" required>
+
+    <label for="email">Din e-post:</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="message">Melding (valgfritt):</label>
+    <textarea id="message" name="message" rows="4"></textarea>
+
+    <button type="submit">Send registrering</button>
+  </form>
+  <div id="status"></div>
+
+  <script>
+    emailjs.init("YOUR_PUBLIC_KEY_HERE"); // Replace this with your EmailJS public key
+
+    document.getElementById('painting-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
+        painting_id: document.getElementById("painting-id").value,
+        owner_name: document.getElementById("owner-name").value,
+        email: document.getElementById("email").value,
+        message: document.getElementById("message").value
+      })
+      .then(function(response) {
+        document.getElementById("status").textContent = "Takk! Din registrering er sendt.";
+        document.getElementById("painting-form").reset();
+      }, function(error) {
+        document.getElementById("status").textContent = "Noe gikk galt. Vennligst prøv igjen.";
+        console.error(error);
+      });
+    });
+  </script>
+</body>
+</html>
