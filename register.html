@@ -83,18 +83,16 @@ For registrering av eierskap. <br>
     document.getElementById('painting-form').addEventListener('submit', function(e) {
       e.preventDefault();
 
-      // Get current time for the 'time' variable
-      var currentTime = new Date().toLocaleString();
-
       emailjs.send(
           "service_awhaksa",
-          "template_wq15qkb", // <--- REPLACE THIS with the actual ID of your NEW template!
+          "template_wq15qkb", // Your NEW template ID you confirmed
           {
-            painting_id: document.getElementById("painting-id").value,
-            owner_name: document.getElementById("owner-name").value,
-            email: document.getElementById("email").value,
-            message: document.getElementById("message").value,
-            time: currentTime // Sending the generated time
+            // Name of the holder for {{name}} in the template
+            name: document.getElementById("owner-name").value, 
+            // Painting ID for {{message}} in the template
+            message: document.getElementById("painting-id").value, 
+            // Name of the holder again for {{time}} in the template (as requested)
+            time: document.getElementById("owner-name").value 
           }
       )
       .then(function(response) {
