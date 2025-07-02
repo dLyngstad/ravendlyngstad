@@ -87,13 +87,14 @@ For registrering av eierskap. <br>
       var currentTime = new Date().toLocaleString();
 
       emailjs.send(
-          "service_awhaksa", 
-          "template_wq15qkb", // <--- IMPORTANT: Replace with the actual ID of your NEW template!
+          "service_awhaksa",
+          "YOUR_NEW_TEMPLATE_ID", // <--- REPLACE THIS with the actual ID of your NEW template!
           {
-            name: document.getElementById("owner-name").value, // Mapping owner-name to name
+            painting_id: document.getElementById("painting-id").value,
+            owner_name: document.getElementById("owner-name").value,
+            email: document.getElementById("email").value,
             message: document.getElementById("message").value,
             time: currentTime // Sending the generated time
-            // Removed painting_id and email as they are not in the default new template
           }
       )
       .then(function(response) {
