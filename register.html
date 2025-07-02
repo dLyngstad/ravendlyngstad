@@ -162,4 +162,53 @@
 <body>
   <div class="container">
     <div class="back-button-container">
-      <a href="index.html" class="back-button">Tilbake
+      <a href="index.html" class="back-button">Tilbake</a>
+    </div> <h1>Registrer ditt maleri</h1>
+
+    <p>Her kan du registrere et maleri med IDen på baksiden!<br>For registrering av eierskap.</p>
+
+    <form id="painting-form">
+      <label for="painting-id">ID på maleriet:</label>
+      <input type="text" id="painting-id" name="painting_id" required>
+
+      <label for="owner-name">Navn (Valgfritt):</label>
+      <input type="text" id="owner-name" name="owner_name">
+
+      <button type="submit">Send registrering</button>
+    </form>
+    <div id="status"></div>
+  </div> <script>
+    emailjs.init("pGCjjy87icYJXKLC7"); // Your EmailJS public key
+
+    document.getElementById('painting-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      emailjs.send(
+          "service_awhaksa",
+          "template_wq15qkb", // Your NEW template ID
+          {
+            // Name of the holder for {{name}} in the template
+            name: document.getElementById("owner-name").value,
+            // Painting ID for {{message}} in the template
+            message: document.getElementById("painting-id").value,
+            // Name of the holder again for {{time}} in the template
+            time: document.getElementById("owner-name").value
+          }
+      )
+      .then(function(response) {
+        const statusDiv = document.getElementById("status");
+        statusDiv.textContent = "Takk! Din registrering er sendt.";
+        statusDiv.classList.remove('error'); // Ensure no error class
+        statusDiv.classList.add('success'); // Add success class for styling
+        document.getElementById("painting-form").reset();
+      }, function(error) {
+        const statusDiv = document.getElementById("status");
+        statusDiv.textContent = "Noe gikk galt. Vennligst prøv igjen.";
+        statusDiv.classList.remove('success'); // Ensure no success class
+        statusDiv.classList.add('error'); // Add error class for styling
+        console.error(error);
+      });
+    });
+  </script>
+</body>
+</html>
