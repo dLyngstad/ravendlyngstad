@@ -8,9 +8,9 @@
     /* Basic Reset & Font */
     body {
       margin: 0;
-      font-family: 'Inter', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; /* Added Inter as a modern choice */
-      background-color: #1a1a1a; /* Very dark background */
-      color: #e0e0e0; /* Light text color */
+      font-family: 'Inter', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background-color: #ffffff; /* Hvit bakgrunn */
+      color: #333333; /* Mørk tekstfarge for god kontrast på hvit bakgrunn */
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -22,30 +22,30 @@
 
     /* Container for content */
     .container {
-      background-color: #2a2a2a; /* Slightly lighter dark background for the card */
+      background-color: #1a1a1a; /* Beholderen er fortsatt mørk */
       padding: 40px;
       border-radius: 12px;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4); /* Deeper shadow for dark mode depth */
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
       width: 100%;
       max-width: 500px;
       text-align: center;
       position: relative;
-      border: 1px solid rgba(255, 255, 255, 0.08); /* Subtle light border */
+      border: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     /* Heading */
     h1 {
-      color: #f0f0f0; /* Lighter heading color */
+      color: #f0f0f0; /* Lys heading farge */
       margin-bottom: 25px;
       font-size: 2.4em;
-      font-weight: 700; /* Bolder for impact */
+      font-weight: 700;
     }
 
     /* Paragraph text */
     p {
       line-height: 1.6;
       margin-bottom: 30px;
-      color: #b0b0b0; /* Slightly desaturated text color */
+      color: #b0b0b0; /* Lett desaturert tekstfarge */
     }
 
     /* Form Styling */
@@ -66,9 +66,9 @@
     input[type="text"] {
       width: calc(100% - 20px);
       padding: 12px 10px;
-      border: 1px solid #444; /* Darker border for inputs */
-      background-color: #3a3a3a; /* Darker background for inputs */
-      color: #f0f0f0; /* Light text in inputs */
+      border: 1px solid #444;
+      background-color: #3a3a3a;
+      color: #f0f0f0;
       border-radius: 8px;
       font-size: 1em;
       transition: border-color 0.3s ease, box-shadow 0.3s ease;
@@ -76,15 +76,15 @@
     }
 
     input[type="text"]:focus {
-      border-color: #6a5acd; /* A subtle purple accent, like in the image */
-      box-shadow: 0 0 0 3px rgba(106, 90, 205, 0.4); /* Matching shadow */
+      border-color: #6a5acd;
+      box-shadow: 0 0 0 3px rgba(106, 90, 205, 0.4);
       outline: none;
     }
 
     /* Button Styling */
     button[type="submit"] {
-      background-color: #2a2a2a; /* Samme farge som containeren */
-      color: #6a5acd; /* Tekstfargen er accentfargen */
+      background-color: #ffffff; /* Hvit bakgrunn for knappen */
+      color: #6a5acd; /* Tekstfargen er accentfargen (lilla) */
       padding: 14px 25px;
       border: 1px solid #6a5acd; /* Border er accentfargen */
       border-radius: 8px;
@@ -116,14 +116,14 @@
     }
 
     #status.success {
-      background-color: rgba(60, 179, 113, 0.2); /* Semi-transparent green for success */
-      color: #3cb371; /* Green text */
+      background-color: rgba(60, 179, 113, 0.2);
+      color: #3cb371;
       border: 1px solid #3cb371;
     }
 
     #status.error {
-      background-color: rgba(220, 20, 60, 0.2); /* Semi-transparent red for error */
-      color: #dc143c; /* Red text */
+      background-color: rgba(220, 20, 60, 0.2);
+      color: #dc143c;
       border: 1px solid #dc143c;
     }
 
@@ -137,14 +137,14 @@
     .back-button {
       display: inline-flex;
       align-items: center;
-      background-color: #3a3a3a; /* Darker background for back button */
+      background-color: #3a3a3a;
       color: #b0b0b0;
       padding: 10px 15px;
       border-radius: 8px;
       text-decoration: none;
       font-weight: 500;
       transition: background-color 0.3s ease, color 0.3s ease;
-      border: 1px solid #444; /* Subtle border */
+      border: 1px solid #444;
     }
 
     .back-button:hover {
@@ -163,7 +163,9 @@
   <div class="container">
     <div class="back-button-container">
       <a href="index.html" class="back-button">Tilbake</a>
-    </div> <h1>Registrer ditt maleri</h1>
+    </div>
+
+    <h1>Registrer ditt maleri</h1>
 
     <p>Her kan du registrere et maleri med IDen på baksiden!<br>For registrering av eierskap.</p>
 
@@ -177,7 +179,9 @@
       <button type="submit">Send registrering</button>
     </form>
     <div id="status"></div>
-  </div> <script>
+  </div>
+
+  <script>
     emailjs.init("pGCjjy87icYJXKLC7"); // Your EmailJS public key
 
     document.getElementById('painting-form').addEventListener('submit', function(e) {
