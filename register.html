@@ -8,9 +8,9 @@
     /* Basic Reset & Font */
     body {
       margin: 0;
-      font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-      background-color: #f0f2f5; /* Light gray background */
-      color: #333;
+      font-family: 'Inter', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; /* Added Inter as a modern choice */
+      background-color: #1a1a1a; /* Very dark background */
+      color: #e0e0e0; /* Light text color */
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -22,29 +22,30 @@
 
     /* Container for content */
     .container {
-      background-color: #fff;
+      background-color: #2a2a2a; /* Slightly lighter dark background for the card */
       padding: 40px;
       border-radius: 12px;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4); /* Deeper shadow for dark mode depth */
       width: 100%;
       max-width: 500px;
       text-align: center;
-      position: relative; /* Needed for absolute positioning of back button */
+      position: relative;
+      border: 1px solid rgba(255, 255, 255, 0.08); /* Subtle light border */
     }
 
     /* Heading */
     h1 {
-      color: #2c3e50;
+      color: #f0f0f0; /* Lighter heading color */
       margin-bottom: 25px;
-      font-size: 2.2em;
-      font-weight: 600;
+      font-size: 2.4em;
+      font-weight: 700; /* Bolder for impact */
     }
 
     /* Paragraph text */
     p {
       line-height: 1.6;
       margin-bottom: 30px;
-      color: #555;
+      color: #b0b0b0; /* Slightly desaturated text color */
     }
 
     /* Form Styling */
@@ -57,30 +58,32 @@
 
     label {
       font-weight: 600;
-      color: #444;
+      color: #d0d0d0;
       margin-bottom: 5px;
-      display: block; /* Ensure label takes full width */
+      display: block;
     }
 
     input[type="text"] {
-      width: calc(100% - 20px); /* Account for padding */
+      width: calc(100% - 20px);
       padding: 12px 10px;
-      border: 1px solid #ddd;
+      border: 1px solid #444; /* Darker border for inputs */
+      background-color: #3a3a3a; /* Darker background for inputs */
+      color: #f0f0f0; /* Light text in inputs */
       border-radius: 8px;
       font-size: 1em;
       transition: border-color 0.3s ease, box-shadow 0.3s ease;
-      box-sizing: border-box; /* Include padding in element's total width and height */
+      box-sizing: border-box;
     }
 
     input[type="text"]:focus {
-      border-color: #007bff;
-      box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+      border-color: #6a5acd; /* A subtle purple accent, like in the image */
+      box-shadow: 0 0 0 3px rgba(106, 90, 205, 0.4); /* Matching shadow */
       outline: none;
     }
 
     /* Button Styling */
     button[type="submit"] {
-      background-color: #007bff;
+      background-color: #6a5acd; /* Primary purple accent */
       color: #fff;
       padding: 14px 25px;
       border: none;
@@ -94,7 +97,7 @@
     }
 
     button[type="submit"]:hover {
-      background-color: #0056b3;
+      background-color: #7b68ee; /* Lighter purple on hover */
       transform: translateY(-2px);
     }
 
@@ -112,15 +115,15 @@
     }
 
     #status.success {
-      background-color: #d4edda;
-      color: #155724;
-      border: 1px solid #c3e6cb;
+      background-color: rgba(60, 179, 113, 0.2); /* Semi-transparent green for success */
+      color: #3cb371; /* Green text */
+      border: 1px solid #3cb371;
     }
 
     #status.error {
-      background-color: #f8d7da;
-      color: #721c24;
-      border: 1px solid #f5c6cb;
+      background-color: rgba(220, 20, 60, 0.2); /* Semi-transparent red for error */
+      color: #dc143c; /* Red text */
+      border: 1px solid #dc143c;
     }
 
     /* Back Button */
@@ -133,22 +136,23 @@
     .back-button {
       display: inline-flex;
       align-items: center;
-      background-color: #e9ecef;
-      color: #495057;
+      background-color: #3a3a3a; /* Darker background for back button */
+      color: #b0b0b0;
       padding: 10px 15px;
       border-radius: 8px;
       text-decoration: none;
       font-weight: 500;
       transition: background-color 0.3s ease, color 0.3s ease;
+      border: 1px solid #444; /* Subtle border */
     }
 
     .back-button:hover {
-      background-color: #dee2e6;
-      color: #212529;
+      background-color: #4a4a4a;
+      color: #f0f0f0;
     }
 
     .back-button::before {
-      content: '←'; /* Left arrow character */
+      content: '←';
       margin-right: 8px;
       font-size: 1.1em;
     }
