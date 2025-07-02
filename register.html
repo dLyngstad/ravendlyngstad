@@ -25,7 +25,7 @@
       display: block;
       margin-top: 1rem;
     }
-    input, textarea {
+    input, textarea { /* textarea is still in style, but not in form */
       width: 100%;
       padding: 0.5rem;
       margin-top: 0.5rem;
@@ -64,16 +64,9 @@ For registrering av eierskap. <br>
     <label for="painting-id">ID på maleriet:</label>
     <input type="text" id="painting-id" name="painting_id" required>
 
-    <label for="owner-name">Navn (Valgfritt)</label>
-    <input type="text" id="owner-name" name="owner_name">
+    <label for="owner-name">Navn (Valgfritt):</label>     <input type="text" id="owner-name" name="owner_name">
 
-    <label for="email">Din e-post:</label>
-    <input type="email" id="email" name="email" required>
-
-    <label for="message">Mer info (Valgfritt):</label>
-    <textarea id="message" name="message" rows="4"></textarea>
-
-    <button type="submit">Send registrering</button>
+            <button type="submit">Send registrering</button>
   </form>
   <div id="status"></div>
 
@@ -85,13 +78,13 @@ For registrering av eierskap. <br>
 
       emailjs.send(
           "service_awhaksa",
-          "template_wq15qkb", // Your NEW template ID you confirmed
+          "template_wq15qkb", // Your NEW template ID
           {
             // Name of the holder for {{name}} in the template
             name: document.getElementById("owner-name").value, 
             // Painting ID for {{message}} in the template
             message: document.getElementById("painting-id").value, 
-            // Name of the holder again for {{time}} in the template (as requested)
+            // Name of the holder again for {{time}} in the template
             time: document.getElementById("owner-name").value 
           }
       )
