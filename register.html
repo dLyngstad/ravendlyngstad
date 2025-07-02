@@ -5,53 +5,134 @@
   <title>Registrer maleri | Raven D. Lyngstad</title>
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
   <style>
+    /* General Body and Font Styling */
     body {
-      font-family: Arial, sans-serif;
-      background: #f9f9f9;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* More modern font */
+      background: linear-gradient to bottom, #f0f2f5, #e0e2e5; /* Soft gradient background */
       padding: 2rem;
-      max-width: 600px;
-      margin: auto;
+      max-width: 650px; /* Slightly wider form */
+      margin: 2rem auto; /* Add margin top/bottom for better spacing */
+      color: #333;
+      line-height: 1.6;
     }
+
+    /* Header Styling */
     h1 {
       text-align: center;
+      color: #2c3e50; /* Darker, more professional color */
+      margin-bottom: 1.5rem;
+      font-size: 2.5rem; /* Larger heading */
+      letter-spacing: 1px;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
     }
+
+    /* Back Button Styling */
+    .back-button-container {
+      margin-bottom: 2rem; /* More space below the back button */
+      text-align: left;
+    }
+    .back-button {
+      display: inline-block;
+      padding: 0.7rem 1.4rem; /* Slightly larger padding */
+      background-color: #555; /* Darker grey */
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px; /* More rounded corners */
+      font-size: 0.95rem;
+      transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth hover effect */
+    }
+    .back-button:hover {
+      background-color: #777; /* Lighter on hover */
+      transform: translateY(-2px); /* Slight lift */
+    }
+
+    /* Paragraph text styling */
+    p {
+      margin-bottom: 1.5rem;
+      text-align: center;
+      color: #555;
+    }
+
+    /* Form Container Styling */
     form {
-      background: white;
-      padding: 2rem;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      background: #ffffff; /* Pure white background */
+      padding: 2.5rem; /* More internal padding */
+      border-radius: 12px; /* Softer rounded corners */
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08); /* More pronounced shadow */
+      border: 1px solid #e0e0e0; /* Subtle border */
     }
+
+    /* Label Styling */
     label {
       display: block;
-      margin-top: 1rem;
+      margin-top: 1.5rem; /* More space between labels */
+      margin-bottom: 0.5rem; /* Space between label and input */
+      font-weight: bold;
+      color: #333;
+      font-size: 1.05rem;
     }
-    input, textarea { /* textarea is still in style, but not in form */
-      width: 100%;
-      padding: 0.5rem;
-      margin-top: 0.5rem;
-      border-radius: 5px;
+
+    /* Input Field Styling */
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      width: calc(100% - 1rem); /* Account for padding */
+      padding: 0.8rem; /* More padding inside inputs */
+      margin-top: 0; /* Remove default top margin */
+      border-radius: 6px; /* Slightly more rounded */
       border: 1px solid #ccc;
+      font-size: 1rem;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+      box-sizing: border-box; /* Include padding in width calculation */
     }
-    button {
-      margin-top: 1.5rem;
-      padding: 0.75rem;
-      width: 100%;
-      background-color: #222;
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    textarea:focus {
+      border-color: #007bff; /* Highlight on focus */
+      box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25); /* Glow effect on focus */
+      outline: none; /* Remove default outline */
+    }
+
+    /* Button Styling */
+    button[type="submit"] {
+      margin-top: 2.5rem; /* More space above button */
+      padding: 1rem; /* Larger padding for a more prominent button */
+      background-color: #007bff; /* Primary blue color */
       color: white;
       border: none;
-      border-radius: 5px;
-      font-size: 1rem;
+      border-radius: 6px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth hover effect */
     }
+    button[type="submit"]:hover {
+      background-color: #0056b3; /* Darker blue on hover */
+      transform: translateY(-2px); /* Slight lift effect */
+    }
+    button[type="submit"]:active {
+      transform: translateY(0); /* Press down effect */
+    }
+
+
+    /* Status Message Styling */
     #status {
-      margin-top: 1rem;
+      margin-top: 1.5rem;
       text-align: center;
+      font-weight: bold;
+      color: #28a745; /* Success green */
     }
+    #status.error {
+      color: #dc3545; /* Error red */
+    }
+
   </style>
 </head>
 <body>
   <h1>Registrer ditt maleri</h1>
-<div style="margin-bottom: 1rem;">
-  <a href="index.html" style="display:inline-block; padding:0.5rem 1rem; background:#222; color:#fff; text-decoration:none; border-radius:5px;">← Tilbake</a>
+
+<div class="back-button-container">
+  <a href="index.html" class="back-button">← Tilbake</a>
 </div>
 
 
@@ -64,9 +145,10 @@ For registrering av eierskap. <br>
     <label for="painting-id">ID på maleriet:</label>
     <input type="text" id="painting-id" name="painting_id" required>
 
-    <label for="owner-name">Navn (Valgfritt):</label>     <input type="text" id="owner-name" name="owner_name">
+    <label for="owner-name">Navn (Valgfritt):</label>
+    <input type="text" id="owner-name" name="owner_name">
 
-            <button type="submit">Send registrering</button>
+    <button type="submit">Send registrering</button>
   </form>
   <div id="status"></div>
 
@@ -81,18 +163,24 @@ For registrering av eierskap. <br>
           "template_wq15qkb", // Your NEW template ID
           {
             // Name of the holder for {{name}} in the template
-            name: document.getElementById("owner-name").value, 
+            name: document.getElementById("owner-name").value,
             // Painting ID for {{message}} in the template
-            message: document.getElementById("painting-id").value, 
+            message: document.getElementById("painting-id").value,
             // Name of the holder again for {{time}} in the template
-            time: document.getElementById("owner-name").value 
+            time: document.getElementById("owner-name").value
           }
       )
       .then(function(response) {
-        document.getElementById("status").textContent = "Takk! Din registrering er sendt.";
+        const statusDiv = document.getElementById("status");
+        statusDiv.textContent = "Takk! Din registrering er sendt.";
+        statusDiv.classList.remove('error'); // Ensure no error class
+        statusDiv.classList.add('success'); // Add success class for styling
         document.getElementById("painting-form").reset();
       }, function(error) {
-        document.getElementById("status").textContent = "Noe gikk galt. Vennligst prøv igjen.";
+        const statusDiv = document.getElementById("status");
+        statusDiv.textContent = "Noe gikk galt. Vennligst prøv igjen.";
+        statusDiv.classList.remove('success'); // Ensure no success class
+        statusDiv.classList.add('error'); // Add error class for styling
         console.error(error);
       });
     });
