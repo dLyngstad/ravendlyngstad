@@ -1,67 +1,213 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Registrer maleri | Raven D. Lyngstad</title>
-  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
- 
+  <meta charset="UTF-8">
+  <title>Registrer maleri | Raven D. Lyngstad</title>
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <style>
+    /* Basic Reset & Font */
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background-color: #f0f2f5; /* Light gray background */
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    /* Container for content */
+    .container {
+      background-color: #fff;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+      width: 100%;
+      max-width: 500px;
+      text-align: center;
+      position: relative; /* Needed for absolute positioning of back button */
+    }
+
+    /* Heading */
+    h1 {
+      color: #2c3e50;
+      margin-bottom: 25px;
+      font-size: 2.2em;
+      font-weight: 600;
+    }
+
+    /* Paragraph text */
+    p {
+      line-height: 1.6;
+      margin-bottom: 30px;
+      color: #555;
+    }
+
+    /* Form Styling */
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      text-align: left;
+    }
+
+    label {
+      font-weight: 600;
+      color: #444;
+      margin-bottom: 5px;
+      display: block; /* Ensure label takes full width */
+    }
+
+    input[type="text"] {
+      width: calc(100% - 20px); /* Account for padding */
+      padding: 12px 10px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 1em;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      box-sizing: border-box; /* Include padding in element's total width and height */
+    }
+
+    input[type="text"]:focus {
+      border-color: #007bff;
+      box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+      outline: none;
+    }
+
+    /* Button Styling */
+    button[type="submit"] {
+      background-color: #007bff;
+      color: #fff;
+      padding: 14px 25px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1em;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      margin-top: 15px;
+      width: 100%;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #0056b3;
+      transform: translateY(-2px);
+    }
+
+    button[type="submit"]:active {
+      transform: translateY(0);
+    }
+
+    /* Status Message */
+    #status {
+      margin-top: 25px;
+      padding: 15px;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    #status.success {
+      background-color: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+    }
+
+    #status.error {
+      background-color: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+    }
+
+    /* Back Button */
+    .back-button-container {
+      position: absolute;
+      top: 25px;
+      left: 25px;
+    }
+
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+      background-color: #e9ecef;
+      color: #495057;
+      padding: 10px 15px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .back-button:hover {
+      background-color: #dee2e6;
+      color: #212529;
+    }
+
+    .back-button::before {
+      content: '←'; /* Left arrow character */
+      margin-right: 8px;
+      font-size: 1.1em;
+    }
+  </style>
 </head>
 <body>
-  <h1>Registrer ditt maleri</h1>
+  <div class="container">
+    <div class="back-button-container">
+      <a href="index.html" class="back-button">Tilbake</a>
+    </div>
 
-<div class="back-button-container">
-  <a href="index.html" class="back-button">← Tilbake</a>
-</div>
+    <h1>Registrer ditt maleri</h1>
 
+    <p>Her kan du registrere et maleri med IDen på baksiden!<br>For registrering av eierskap.</p>
 
-<p>Her kan du registrere et maleri med IDen på baksiden!<br>
-For registrering av eierskap. <br>
+    <form id="painting-form">
+      <label for="painting-id">ID på maleriet:</label>
+      <input type="text" id="painting-id" name="painting_id" required>
 
-</p>
+      <label for="owner-name">Navn (Valgfritt):</label>
+      <input type="text" id="owner-name" name="owner_name">
 
-  <form id="painting-form">
-    <label for="painting-id">ID på maleriet:</label>
-    <input type="text" id="painting-id" name="painting_id" required>
+      <button type="submit">Send registrering</button>
+    </form>
+    <div id="status"></div>
+  </div>
 
-    <label for="owner-name">Navn (Valgfritt):</label>
-    <input type="text" id="owner-name" name="owner_name">
+  <script>
+    emailjs.init("pGCjjy87icYJXKLC7"); // Your EmailJS public key
 
-    <button type="submit">Send registrering</button>
-  </form>
-  <div id="status"></div>
+    document.getElementById('painting-form').addEventListener('submit', function(e) {
+      e.preventDefault();
 
-  <script>
-    emailjs.init("pGCjjy87icYJXKLC7"); // Your EmailJS public key
-
-    document.getElementById('painting-form').addEventListener('submit', function(e) {
-      e.preventDefault();
-
-      emailjs.send(
+      emailjs.send(
           "service_awhaksa",
           "template_wq15qkb", // Your NEW template ID
           {
             // Name of the holder for {{name}} in the template
-            name: document.getElementById("owner-name").value,
+            name: document.getElementById("owner-name").value,
             // Painting ID for {{message}} in the template
-            message: document.getElementById("painting-id").value,
+            message: document.getElementById("painting-id").value,
             // Name of the holder again for {{time}} in the template
-            time: document.getElementById("owner-name").value
-          }
-      )
-      .then(function(response) {
-        const statusDiv = document.getElementById("status");
-        statusDiv.textContent = "Takk! Din registrering er sendt.";
+            time: document.getElementById("owner-name").value
+          }
+      )
+      .then(function(response) {
+        const statusDiv = document.getElementById("status");
+        statusDiv.textContent = "Takk! Din registrering er sendt.";
         statusDiv.classList.remove('error'); // Ensure no error class
         statusDiv.classList.add('success'); // Add success class for styling
-        document.getElementById("painting-form").reset();
-      }, function(error) {
-        const statusDiv = document.getElementById("status");
-        statusDiv.textContent = "Noe gikk galt. Vennligst prøv igjen.";
+        document.getElementById("painting-form").reset();
+      }, function(error) {
+        const statusDiv = document.getElementById("status");
+        statusDiv.textContent = "Noe gikk galt. Vennligst prøv igjen.";
         statusDiv.classList.remove('success'); // Ensure no success class
         statusDiv.classList.add('error'); // Add error class for styling
-        console.error(error);
-      });
-    });
-  </script>
+        console.error(error);
+      });
+    });
+  </script>
 </body>
 </html>
