@@ -76,10 +76,13 @@
         /* ======================== Shop Content Area (minimal styling) ======================== */
         .shop-content-area {
             background-color: #f8f8f8;
-            padding: 40px 20px; /* Standard padding */
-            max-width: 800px; /* Enkel maksbredde for innholdsområdet */
-            margin: 0 auto; /* Sentrerer innholdet */
-            text-align: center; /* Sentrerer titler etc. */
+            padding: 40px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            /* **MODIFIED** for a more robust layout */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .section-title {
@@ -96,9 +99,10 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             padding: 20px;
             margin-bottom: 30px; /* Mellomrom mellom produktene */
-            max-width: 400px; /* Maksbredde for hvert produkt, sentrert */
-            margin-left: auto;
-            margin-right: auto;
+            /* **MODIFIED** to ensure proper width and alignment */
+            width: 90%;
+            max-width: 400px;
+            text-align: left; /* Better for readability */
         }
 
         .product-container h3 {
@@ -113,16 +117,10 @@
             color: #555;
         }
 
-        /* Ingen spesifikk styling for div[id^="paypal-container-"] utover sentrering,
-           for å la PayPal kontrollere sin egen layout.
-           VIKTIG: Fjern all "skjul"-styling herifra!
-        */
         div[id^="paypal-container-"] {
-            margin: 20px auto 0 auto; /* Sentrerer PayPal-knappen */
-            max-width: 250px; /* Gi den litt mer plass enn knappen kanskje trenger */
-            min-height: 50px; /* Sørg for at den har plass til å rendres */
-            /* Fjerner all den aggressive skjule-stylingen fra forrige forsøk */
-            /* overflow: hidden; text-indent: -9999px; line-height: 0; font-size: 0; etc. */
+            margin: 20px auto 0 auto;
+            max-width: 250px;
+            min-height: 50px;
         }
 
         /* ======================== Footer Styles ======================== */
