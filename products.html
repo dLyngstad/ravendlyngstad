@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Raven D. Lyngstad - Shop</title>
+    <title>Raven D. Lyngstad - Shop (Forenklet)</title>
 
     <style>
-        /* ======================== Header Styles (Based on your screenshot) ======================== */
+        /* ======================== Header Styles ======================== */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -73,12 +73,13 @@
             color: #222;
         }
 
-        /* ======================== Shop Content Area ======================== */
+        /* ======================== Shop Content Area (minimal styling) ======================== */
         .shop-content-area {
             background-color: #f8f8f8;
-            padding: 40px 80px; /* Økt horisontal padding for mer plass fra kanten */
-            margin: 0; /* Fjern margin auto for å la den ta opp hele bredden */
-            max-width: none; /* Fjern maksbredde for å strekke seg */
+            padding: 40px 20px; /* Standard padding */
+            max-width: 800px; /* Enkel maksbredde for innholdsområdet */
+            margin: 0 auto; /* Sentrerer innholdet */
+            text-align: center; /* Sentrerer titler etc. */
         }
 
         .section-title {
@@ -88,86 +89,42 @@
             margin-bottom: 40px;
         }
 
-        /* ======================== Product Grid & Card Styles ======================== */
-        .product-grid {
-            display: flex;
-            flex-direction: column; /* Stabbler elementer under hverandre */
-            gap: 30px; /* Avstand mellom kortene */
-            /* Ingen align-items: center; da kortene skal ta opp full bredde */
-        }
-
-        .product-card {
+        /* ======================== Product Containers (minimal styling) ======================== */
+        .product-container { /* Nytt navn for klarhet */
             background-color: #fff;
             border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            text-align: center;
-            padding-bottom: 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 100%; /* Kortene skal nå ta opp hele den tilgjengelige bredden */
-            max-width: none; /* Fjerner maksbredde for å strekke seg */
-            min-height: 500px;
-        }
-
-        .product-image {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            border-bottom: 1px solid #eee;
-            margin-bottom: 15px;
-            display: block;
+            padding: 20px;
+            margin-bottom: 30px; /* Mellomrom mellom produktene */
+            max-width: 400px; /* Maksbredde for hvert produkt, sentrert */
             margin-left: auto;
             margin-right: auto;
         }
 
-        .product-title {
-            font-size: 1.4em;
+        .product-container h3 {
+            font-size: 1.5em;
+            margin-top: 0;
+            margin-bottom: 10px;
             color: #333;
-            margin: 15px 15px 5px;
         }
 
-        .product-description {
-            font-size: 0.95em;
-            color: #666;
-            margin: 0 15px 15px;
-            flex-grow: 1;
+        .product-container p {
+            margin-bottom: 15px;
+            color: #555;
         }
 
-        .product-price {
-            font-size: 1.2em;
-            font-weight: bold;
-            color: #007bff;
-            margin-bottom: 20px;
-            margin-top: 10px;
-        }
-
-        /* Style for the div where PayPal renders the button (to center it) */
+        /* Ingen spesifikk styling for div[id^="paypal-container-"] utover sentrering,
+           for å la PayPal kontrollere sin egen layout.
+           VIKTIG: Fjern all "skjul"-styling herifra!
+        */
         div[id^="paypal-container-"] {
-            margin: 0 auto;
-            max-width: 200px; /* Limit its width if it gets too wide */
-            padding: 0 15px;
-            min-height: 60px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            /* Legg til dette for å skjule den uønskede teksten om den dukker opp under knappen */
-            overflow: hidden; /* Skjuler innhold som går utenfor div'en */
-            text-indent: -9999px; /* Flytter tekst ut av syne */
-            line-height: 0; /* Fjerner linjehøyde for teksten */
-            font-size: 0; /* Setter skriftstørrelse til 0 for teksten */
-            position: relative; /* Nødvendig for z-index */
+            margin: 20px auto 0 auto; /* Sentrerer PayPal-knappen */
+            max-width: 250px; /* Gi den litt mer plass enn knappen kanskje trenger */
+            min-height: 50px; /* Sørg for at den har plass til å rendres */
+            /* Fjerner all den aggressive skjule-stylingen fra forrige forsøk */
+            /* overflow: hidden; text-indent: -9999px; line-height: 0; font-size: 0; etc. */
         }
 
-        /* Sikrer at PayPal-knappen vises riktig oppå */
-        div[id^="paypal-container-"] > iframe {
-            text-indent: 0; /* Tilbakestiller for iframe-innhold */
-            width: 100% !important; /* Sikrer at knappen tar opp tilgjengelig plass */
-            height: auto !important; /* Justerer høyde automatisk */
-            min-height: 40px; /* Minimumshøyde for knappen */
-        }
-        
         /* ======================== Footer Styles ======================== */
         footer {
             background-color: #222;
@@ -201,27 +158,20 @@
     <main class="shop-content-area">
         <h2 class="section-title">Produkter</h2>
 
-        <div class="product-grid">
-
-            <div class="product-card">
-                <img src="https://i.imgur.com/XRLFCpi.png" alt="Staffeli" class="product-image">
-                <h3 class="product-title">Staffeli</h3>
-                <p class="product-description">Et robust og justerbart staffeli.</p>
-                <p class="product-price">NOK 899.00</p>
-
-                <div id="paypal-container-GJR9J4HRNUZC8"></div>
-            </div>
-
-            <div class="product-card">
-                <img src="https://i.imgur.com/XRLFCpi.png" alt="Børster" class="product-image">
-                <h3 class="product-title">børster</h3>
-                <p class="product-description">Børster. Inneholder pensler.</p>
-                <p class="product-price">NOK 450.00</p>
-
-                <div id="paypal-container-4AZAEU5PCRTD2"></div>
-            </div>
-
+        <div class="product-container">
+            <h3>Staffeli</h3>
+            <p>Et robust og justerbart staffeli.</p>
+            <p>NOK 899.00</p>
+            <div id="paypal-container-GJR9J4HRNUZC8"></div>
         </div>
+
+        <div class="product-container">
+            <h3>Børster</h3>
+            <p>Børster. Inneholder pensler.</p>
+            <p>NOK 450.00</p>
+            <div id="paypal-container-4AZAEU5PCRTD2"></div>
+        </div>
+
     </main>
 
     <footer>
@@ -230,7 +180,7 @@
 
     <script>
       function initPayPalButtons() {
-        if (typeof paypal !== 'undefined') { // Check if PayPal SDK is loaded
+        if (typeof paypal !== 'undefined') {
           paypal.HostedButtons({
             hostedButtonId: "GJR9J4HRNUZC8",
           }).render("#paypal-container-GJR9J4HRNUZC8");
@@ -239,15 +189,10 @@
             hostedButtonId: "4AZAEU5PCRTD2",
           }).render("#paypal-container-4AZAEU5PCRTD2");
         } else {
-          // Fallback if PayPal SDK is not loaded immediately (e.g., network issues)
-          console.warn("PayPal SDK not loaded yet, retrying in 1 second...");
-          setTimeout(initPayPalButtons, 1000);
+          console.warn("PayPal SDK not loaded yet, retrying in 500ms...");
+          setTimeout(initPayPalButtons, 500); // Prøv igjen litt raskere
         }
       }
-      // If the onload event on the SDK script somehow doesn't fire,
-      // we can try to call it after DOMContentLoaded as a fallback.
-      // However, the onload on the script tag is usually more reliable for SDKs.
-      // document.addEventListener('DOMContentLoaded', initPayPalButtons);
     </script>
 
 </body>
