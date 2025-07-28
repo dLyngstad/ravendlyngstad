@@ -7,6 +7,13 @@
 
     <style>
         /* ======================== Header Styles (Based on your screenshot) ======================== */
+        body { /* Add this to ensure consistent font for the whole body */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f8f8f8; /* Light background for consistency */
+            color: #333;
+        }
+
         header {
             background-color: #222; /* Dark background */
             color: #fff;
@@ -98,6 +105,7 @@
             display: flex; /* Use flexbox to organize content vertically */
             flex-direction: column;
             justify-content: space-between; /* Push button to bottom if content varies */
+            min-height: 450px; /* Give cards a minimum height for consistency */
         }
 
         .product-image {
@@ -125,7 +133,7 @@
             font-size: 1.2em;
             font-weight: bold;
             color: #007bff; /* A standard blue for prices */
-            margin-bottom: 20px;
+            margin-bottom: 20px; /* Space before the button */
             margin-top: 10px;
         }
 
@@ -135,6 +143,11 @@
             margin: 0 auto; /* Center the PayPal button container */
             max-width: 200px; /* Limit its width if it gets too wide */
             padding: 0 15px; /* Add some side padding */
+            /* Added min-height to ensure button space even before render */
+            min-height: 40px; /* Approximate height of a PayPal button */
+            display: flex; /* Helps in centering the actual button within this div */
+            justify-content: center;
+            align-items: center;
         }
 
 
@@ -177,35 +190,3 @@
                 <h3 class="product-title">Staffeli</h3>
                 <p class="product-description">Et robust og justerbart staffeli, perfekt for både amatører og erfarne kunstnere. Laget av bærekraftig tre.</p>
                 <p class="product-price">NOK 899.00</p>
-
-                <div id="paypal-container-GJR9J4HRNUZC8"></div>
-                <script>
-                  paypal.HostedButtons({
-                    hostedButtonId: "GJR9J4HRNUZC8",
-                  }).render("#paypal-container-GJR9J4HRNUZC8")
-                </script>
-            </div>
-
-            <div class="product-card">
-                <img src="images/malerisett.jpg" alt="Malerisett" class="product-image">
-                <h3 class="product-title">Malerisett (Akryl)</h3>
-                <p class="product-description">Start din kunstneriske reise med dette komplette akrylmalerisettet. Inneholder pensler, farger og lerret.</p>
-                <p class="product-price">NOK 450.00</p>
-
-                <div id="paypal-container-ANOTHER_UNIQUE_ID_FOR_PAINTING_SET"></div>
-                <script>
-                  paypal.HostedButtons({
-                    hostedButtonId: "ANOTHER_UNIQUE_ID_FOR_PAINTING_SET",
-                  }).render("#paypal-container-ANOTHER_UNIQUE_ID_FOR_PAINTING_SET")
-                </script>
-            </div>
-
-            </div>
-    </main>
-
-    <footer>
-        <p>&copy; 2025 Raven D. Lyngstad. All rights reserved.</p>
-    </footer>
-
-</body>
-</html>
