@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Awesome Shop</title>
+    <link rel="stylesheet" href="style.css">
+
+    <script
+      src="https://www.paypal.com/sdk/js?client-id=BAA_EI1PEbb2JIpFt45Lz8MYi7_8vNhGodR9k5qa0KkmHMXq6SvmGuoi6vTg-VmOCa8EMdNGveaoU-ZTFU&components=hosted-buttons&disable-funding=venmo&currency=NOK">
+    </script>
+    </head>
+<body>
+
+    <header>
+        <h1>Welcome to My Shop!</h1>
+        <nav>
+            <a href="index.html">Home</a> | <a href="products.html">Products</a>
+        </nav>
+    </header>
+
+    <main class="product-grid">
+
+        <div class="product-card">
+            <img src="images/mug.jpg" alt="Handmade Ceramic Mug" class="product-image">
+            <h3 class="product-title">Handmade Ceramic Mug</h3>
+            <p class="product-description">Each mug is unique, crafted with love and a touch of whimsy. Perfect for your morning coffee!</p>
+            <p class="product-price">€25.00</p>
+
+            <div id="paypal-container-GJR9J4HRNUZC8"></div>
+            <script>
+              paypal.HostedButtons({
+                hostedButtonId: "GJR9J4HRNUZC8", // This is the ID for YOUR mug button
+              }).render("#paypal-container-GJR9J4HRNUZC8")
+            </script>
+            </div>
+
+        <div class="product-card">
+            <img src="images/painting.jpg" alt="Abstract Painting" class="product-image">
+            <h3 class="product-title">Abstract Painting</h3>
+            <p class="product-description">Vibrant colors and unique textures define this captivating piece. Bring art into your home!</p>
+            <p class="product-price">€120.00</p>
+
+            <div id="paypal-container-ANOTHER_UNIQUE_ID"></div>
+            <script>
+              paypal.HostedButtons({
+                hostedButtonId: "ANOTHER_UNIQUE_ID", // This is the ID for YOUR painting button
+              }).render("#paypal-container-ANOTHER_UNIQUE_ID")
+            </script>
+            </div>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 My Shop. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
