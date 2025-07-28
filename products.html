@@ -3,26 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Raven D. Lyngstad - Shop (Forenklet)</title>
+    <title>Raven D. Lyngstad - Shop</title>
 
     <style>
-        /* ======================== Header Styles ======================== */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            background-color: #f8f8f8;
-            color: #333;
-        }
-
+        /* ======================== Header Styles (Based on your screenshot) ======================== */
         header {
-            background-color: #222;
+            background-color: #222; /* Dark background */
             color: #fff;
             padding: 20px 0;
             text-align: center;
         }
 
         .header-content {
-            max-width: 960px;
+            max-width: 960px; /* Adjust as needed */
             margin: 0 auto;
             padding: 0 20px;
         }
@@ -30,12 +23,12 @@
         header h1 {
             font-size: 2.5em;
             margin-bottom: 5px;
-            font-weight: bold;
+            font-weight: bold; /* Make sure it's bold like in your screenshot */
         }
 
         .subtitle {
             font-size: 1.1em;
-            color: #aaa;
+            color: #aaa; /* Slightly lighter gray for subtitle */
             margin-top: 0;
             margin-bottom: 20px;
         }
@@ -46,21 +39,21 @@
             margin: 0 15px;
             font-size: 1.1em;
             transition: color 0.3s ease;
-            padding: 5px 0;
+            padding: 5px 0; /* Add padding for active state */
         }
 
         header nav a:hover {
-            color: #ffd700;
+            color: #ffd700; /* Example hover color (gold) */
         }
 
         header nav a.active-nav {
-            border-bottom: 2px solid #ffd700;
+            border-bottom: 2px solid #ffd700; /* Underline for active page */
             font-weight: bold;
         }
 
         .button-nav {
-            background-color: #ffd700;
-            color: #222;
+            background-color: #ffd700; /* Gold button background */
+            color: #222; /* Dark text on button */
             padding: 8px 20px;
             border-radius: 5px;
             text-decoration: none;
@@ -69,20 +62,16 @@
         }
 
         .button-nav:hover {
-            background-color: #e6c200;
+            background-color: #e6c200; /* Slightly darker gold on hover */
             color: #222;
         }
 
-        /* ======================== Shop Content Area (minimal styling) ======================== */
+        /* ======================== Shop Content Area ======================== */
         .shop-content-area {
-            background-color: #f8f8f8;
+            background-color: #f8f8f8; /* Light background for content area */
             padding: 40px 20px;
-            max-width: 800px;
+            max-width: 960px; /* Match header content width */
             margin: 0 auto;
-            /* **MODIFIED** for a more robust layout */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
         }
 
         .section-title {
@@ -92,36 +81,62 @@
             margin-bottom: 40px;
         }
 
-        /* ======================== Product Containers (minimal styling) ======================== */
-        .product-container { /* Nytt navn for klarhet */
+        /* ======================== Product Grid & Card Styles (Similar to your gallery) ======================== */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Adjust minmax for card width */
+            gap: 30px; /* Space between cards */
+        }
+
+        .product-card {
             background-color: #fff;
             border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            margin-bottom: 30px; /* Mellomrom mellom produktene */
-            /* **MODIFIED** to ensure proper width and alignment */
-            width: 90%;
-            max-width: 400px;
-            text-align: left; /* Better for readability */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow like gallery */
+            overflow: hidden; /* Ensures image corners are rounded */
+            text-align: center;
+            padding-bottom: 20px; /* Space below content */
+            display: flex; /* Use flexbox to organize content vertically */
+            flex-direction: column;
+            justify-content: space-between; /* Push button to bottom if content varies */
         }
 
-        .product-container h3 {
-            font-size: 1.5em;
-            margin-top: 0;
-            margin-bottom: 10px;
-            color: #333;
-        }
-
-        .product-container p {
+        .product-image {
+            width: 100%;
+            height: 250px; /* Consistent height for all product images */
+            object-fit: cover; /* Crop image to fit without distorting */
+            border-bottom: 1px solid #eee; /* Separator from text */
             margin-bottom: 15px;
-            color: #555;
         }
 
-        div[id^="paypal-container-"] {
-            margin: 20px auto 0 auto;
-            max-width: 250px;
-            min-height: 50px;
+        .product-title {
+            font-size: 1.4em;
+            color: #333;
+            margin: 15px 15px 5px;
         }
+
+        .product-description {
+            font-size: 0.95em;
+            color: #666;
+            margin: 0 15px 15px;
+            flex-grow: 1; /* Allows description to take available space */
+        }
+
+        .product-price {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #007bff; /* A standard blue for prices */
+            margin-bottom: 20px;
+            margin-top: 10px;
+        }
+
+        /* Style for the div where PayPal renders the button (to center it) */
+        /* The actual button inside this div will be styled by PayPal's SDK */
+        div[id^="paypal-container-"] {
+            margin: 0 auto; /* Center the PayPal button container */
+            max-width: 200px; /* Limit its width if it gets too wide */
+            padding: 0 15px; /* Add some side padding */
+        }
+
 
         /* ======================== Footer Styles ======================== */
         footer {
@@ -129,14 +144,13 @@
             color: #fff;
             text-align: center;
             padding: 20px 0;
-            margin-top: 40px;
+            margin-top: 40px; /* Space above footer */
             font-size: 0.9em;
         }
     </style>
 
     <script
-      src="https://www.paypal.com/sdk/js?client-id=BAA_EI1PEbb2JIpFt45Lz8MYi7_8vNhGodR9k5qa0KkmXMXq6SvmGuoi6vTg-VmOCa8EMdNGveaoU-ZTFU&components=hosted-buttons&disable-funding=venmo&currency=NOK"
-      onload="initPayPalButtons()">
+      src="https://www.paypal.com/sdk/js?client-id=BAA_EI1PEbb2JIpFt45Lz8MYi7_8vNhGodR9k5qa0KkmHMXq6SvmGuoi6vTg-VmOCa8EMdNGveaoU-ZTFU&components=hosted-buttons&disable-funding=venmo&currency=NOK">
     </script>
 </head>
 <body>
@@ -149,49 +163,49 @@
                 <a href="about.html">About</a>
                 <a href="gallery.html">Galleri</a>
                 <a href="contact.html">Kontakt</a>
-                <a href="products.html" class="active-nav">Shop</a> &nbsp; <a href="register.html" class="button-nav">Registrer</a>
+                <a href="products.html" class="active-nav">Shop</a> <a href="register.html" class="button-nav">Registrer</a>
             </nav>
         </div>
     </header>
     <main class="shop-content-area">
         <h2 class="section-title">Produkter</h2>
 
-        <div class="product-container">
-            <h3>Staffeli</h3>
-            <p>Et robust og justerbart staffeli.</p>
-            <p>NOK 899.00</p>
-            <div id="paypal-container-GJR9J4HRNUZC8"></div>
-        </div>
+        <div class="product-grid">
 
-        <div class="product-container">
-            <h3>Børster</h3>
-            <p>Børster. Inneholder pensler.</p>
-            <p>NOK 450.00</p>
-            <div id="paypal-container-4AZAEU5PCRTD2"></div>
-        </div>
+            <div class="product-card">
+                <img src="images/staffeli.jpg" alt="Staffeli" class="product-image">
+                <h3 class="product-title">Staffeli</h3>
+                <p class="product-description">Et robust og justerbart staffeli, perfekt for både amatører og erfarne kunstnere. Laget av bærekraftig tre.</p>
+                <p class="product-price">NOK 899.00</p>
 
+                <div id="paypal-container-GJR9J4HRNUZC8"></div>
+                <script>
+                  paypal.HostedButtons({
+                    hostedButtonId: "GJR9J4HRNUZC8",
+                  }).render("#paypal-container-GJR9J4HRNUZC8")
+                </script>
+            </div>
+
+            <div class="product-card">
+                <img src="images/malerisett.jpg" alt="Malerisett" class="product-image">
+                <h3 class="product-title">Malerisett (Akryl)</h3>
+                <p class="product-description">Start din kunstneriske reise med dette komplette akrylmalerisettet. Inneholder pensler, farger og lerret.</p>
+                <p class="product-price">NOK 450.00</p>
+
+                <div id="paypal-container-ANOTHER_UNIQUE_ID_FOR_PAINTING_SET"></div>
+                <script>
+                  paypal.HostedButtons({
+                    hostedButtonId: "ANOTHER_UNIQUE_ID_FOR_PAINTING_SET",
+                  }).render("#paypal-container-ANOTHER_UNIQUE_ID_FOR_PAINTING_SET")
+                </script>
+            </div>
+
+            </div>
     </main>
 
     <footer>
         <p>&copy; 2025 Raven D. Lyngstad. All rights reserved.</p>
     </footer>
-
-    <script>
-      function initPayPalButtons() {
-        if (typeof paypal !== 'undefined') {
-          paypal.HostedButtons({
-            hostedButtonId: "GJR9J4HRNUZC8",
-          }).render("#paypal-container-GJR9J4HRNUZC8");
-
-          paypal.HostedButtons({
-            hostedButtonId: "4AZAEU5PCRTD2",
-          }).render("#paypal-container-4AZAEU5PCRTD2");
-        } else {
-          console.warn("PayPal SDK not loaded yet, retrying in 500ms...");
-          setTimeout(initPayPalButtons, 500); // Prøv igjen litt raskere
-        }
-      }
-    </script>
 
 </body>
 </html>
