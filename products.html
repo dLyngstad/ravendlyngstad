@@ -7,22 +7,22 @@
 
     <style>
         /* ======================== Header Styles (Based on your screenshot) ======================== */
-        body { /* Add this to ensure consistent font for the whole body */
+        body {
             font-family: Arial, sans-serif;
             margin: 0;
-            background-color: #f8f8f8; /* Light background for consistency */
+            background-color: #f8f8f8;
             color: #333;
         }
 
         header {
-            background-color: #222; /* Dark background */
+            background-color: #222;
             color: #fff;
             padding: 20px 0;
             text-align: center;
         }
 
         .header-content {
-            max-width: 960px; /* Adjust as needed */
+            max-width: 960px;
             margin: 0 auto;
             padding: 0 20px;
         }
@@ -30,12 +30,12 @@
         header h1 {
             font-size: 2.5em;
             margin-bottom: 5px;
-            font-weight: bold; /* Make sure it's bold like in your screenshot */
+            font-weight: bold;
         }
 
         .subtitle {
             font-size: 1.1em;
-            color: #aaa; /* Slightly lighter gray for subtitle */
+            color: #aaa;
             margin-top: 0;
             margin-bottom: 20px;
         }
@@ -46,21 +46,21 @@
             margin: 0 15px;
             font-size: 1.1em;
             transition: color 0.3s ease;
-            padding: 5px 0; /* Add padding for active state */
+            padding: 5px 0;
         }
 
         header nav a:hover {
-            color: #ffd700; /* Example hover color (gold) */
+            color: #ffd700;
         }
 
         header nav a.active-nav {
-            border-bottom: 2px solid #ffd700; /* Underline for active page */
+            border-bottom: 2px solid #ffd700;
             font-weight: bold;
         }
 
         .button-nav {
-            background-color: #ffd700; /* Gold button background */
-            color: #222; /* Dark text on button */
+            background-color: #ffd700;
+            color: #222;
             padding: 8px 20px;
             border-radius: 5px;
             text-decoration: none;
@@ -69,16 +69,16 @@
         }
 
         .button-nav:hover {
-            background-color: #e6c200; /* Slightly darker gold on hover */
+            background-color: #e6c200;
             color: #222;
         }
 
         /* ======================== Shop Content Area ======================== */
         .shop-content-area {
-            background-color: #f8f8f8; /* Light background for content area */
-            padding: 40px 20px;
-            max-width: 700px;
-            margin: 0 auto;
+            background-color: #f8f8f8;
+            padding: 40px 80px; /* Økt horisontal padding for mer plass fra kanten */
+            margin: 0; /* Fjern margin auto for å la den ta opp hele bredden */
+            max-width: none; /* Fjern maksbredde for å strekke seg */
         }
 
         .section-title {
@@ -91,9 +91,9 @@
         /* ======================== Product Grid & Card Styles ======================== */
         .product-grid {
             display: flex;
-            flex-direction: column;
-            gap: 30px;
-            align-items: center;
+            flex-direction: column; /* Stabbler elementer under hverandre */
+            gap: 30px; /* Avstand mellom kortene */
+            /* Ingen align-items: center; da kortene skal ta opp full bredde */
         }
 
         .product-card {
@@ -106,8 +106,8 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            width: 100%;
-            max-width: 500px;
+            width: 100%; /* Kortene skal nå ta opp hele den tilgjengelige bredden */
+            max-width: none; /* Fjerner maksbredde for å strekke seg */
             min-height: 500px;
         }
 
@@ -117,6 +117,9 @@
             object-fit: cover;
             border-bottom: 1px solid #eee;
             margin-bottom: 15px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .product-title {
@@ -143,14 +146,28 @@
         /* Style for the div where PayPal renders the button (to center it) */
         div[id^="paypal-container-"] {
             margin: 0 auto;
-            max-width: 200px;
+            max-width: 200px; /* Limit its width if it gets too wide */
             padding: 0 15px;
             min-height: 60px;
             display: flex;
             justify-content: center;
             align-items: center;
+            /* Legg til dette for å skjule den uønskede teksten om den dukker opp under knappen */
+            overflow: hidden; /* Skjuler innhold som går utenfor div'en */
+            text-indent: -9999px; /* Flytter tekst ut av syne */
+            line-height: 0; /* Fjerner linjehøyde for teksten */
+            font-size: 0; /* Setter skriftstørrelse til 0 for teksten */
+            position: relative; /* Nødvendig for z-index */
         }
 
+        /* Sikrer at PayPal-knappen vises riktig oppå */
+        div[id^="paypal-container-"] > iframe {
+            text-indent: 0; /* Tilbakestiller for iframe-innhold */
+            width: 100% !important; /* Sikrer at knappen tar opp tilgjengelig plass */
+            height: auto !important; /* Justerer høyde automatisk */
+            min-height: 40px; /* Minimumshøyde for knappen */
+        }
+        
         /* ======================== Footer Styles ======================== */
         footer {
             background-color: #222;
@@ -163,7 +180,8 @@
     </style>
 
     <script
-      src="https://www.paypal.com/sdk/js?client-id=BAA_EI1PEbb2JIpFt45Lz8MYi7_8vNhGodR9k5qa0KkmHMXq6SvmGuoi6vTg-VmOCa8EMdNGveaoU-ZTFU&components=hosted-buttons&disable-funding=venmo&currency=NOK">
+      src="https://www.paypal.com/sdk/js?client-id=BAA_EI1PEbb2JIpFt45Lz8MYi7_8vNhGodR9k5qa0KkmXMXq6SvmGuoi6vTg-VmOCa8EMdNGveaoU-ZTFU&components=hosted-buttons&disable-funding=venmo&currency=NOK"
+      onload="initPayPalButtons()">
     </script>
 </head>
 <body>
@@ -211,15 +229,25 @@
     </footer>
 
     <script>
-      paypal.HostedButtons({
-        hostedButtonId: "GJR9J4HRNUZC8",
-      }).render("#paypal-container-GJR9J4HRNUZC8")
-    </script>
+      function initPayPalButtons() {
+        if (typeof paypal !== 'undefined') { // Check if PayPal SDK is loaded
+          paypal.HostedButtons({
+            hostedButtonId: "GJR9J4HRNUZC8",
+          }).render("#paypal-container-GJR9J4HRNUZC8");
 
-    <script>
-      paypal.HostedButtons({
-        hostedButtonId: "4AZAEU5PCRTD2",
-      }).render("#paypal-container-4AZAEU5PCRTD2")
+          paypal.HostedButtons({
+            hostedButtonId: "4AZAEU5PCRTD2",
+          }).render("#paypal-container-4AZAEU5PCRTD2");
+        } else {
+          // Fallback if PayPal SDK is not loaded immediately (e.g., network issues)
+          console.warn("PayPal SDK not loaded yet, retrying in 1 second...");
+          setTimeout(initPayPalButtons, 1000);
+        }
+      }
+      // If the onload event on the SDK script somehow doesn't fire,
+      // we can try to call it after DOMContentLoaded as a fallback.
+      // However, the onload on the script tag is usually more reliable for SDKs.
+      // document.addEventListener('DOMContentLoaded', initPayPalButtons);
     </script>
 
 </body>
