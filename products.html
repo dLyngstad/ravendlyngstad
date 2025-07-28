@@ -76,9 +76,9 @@
         /* ======================== Shop Content Area ======================== */
         .shop-content-area {
             background-color: #f8f8f8; /* Light background for content area */
-            padding: 40px 20px;
-            max-width: 700px;
-            margin: 0 auto;
+            padding: 40px 80px; /* Økt horisontal padding for mer plass fra kanten */
+            /* Fjerner max-width for å la innholdsområdet ta opp hele skjermen */
+            margin: 0 auto; /* Fortsatt for å håndtere sentrering om det er nødvendig for underliggende elementer */
         }
 
         .section-title {
@@ -91,9 +91,9 @@
         /* ======================== Product Grid & Card Styles ======================== */
         .product-grid {
             display: flex;
-            flex-direction: column;
-            gap: 30px;
-            align-items: center;
+            flex-direction: column; /* Stabbler elementer under hverandre */
+            gap: 30px; /* Avstand mellom kortene */
+            /* align-items: center; Fjerner denne da kortene nå skal ta opp full bredde */
         }
 
         .product-card {
@@ -106,17 +106,21 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            width: 100%;
-            max-width: 500px;
-            min-height: 500px;
+            width: 100%; /* Kortene skal nå ta opp hele den tilgjengelige bredden */
+            /* Fjerner max-width for å la kortene strekke seg over hele bredden */
+            min-height: 500px; /* Økt minimumshøyde for å gi mer plass */
         }
 
         .product-image {
             width: 100%;
-            height: 250px;
-            object-fit: cover;
-            border-bottom: 1px solid #eee;
+            height: 250px; /* Consistent height for all product images */
+            object-fit: cover; /* Crop image to fit without distorting */
+            border-bottom: 1px solid #eee; /* Separator from text */
             margin-bottom: 15px;
+            /* Legg til sentrering for bildet om det ikke tar opp 100% av bredden av en eller annen grunn */
+            display: block; /* Sikrer at margin: auto fungerer */
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .product-title {
@@ -143,7 +147,7 @@
         /* Style for the div where PayPal renders the button (to center it) */
         div[id^="paypal-container-"] {
             margin: 0 auto;
-            max-width: 200px;
+            max-width: 200px; /* Limit its width if it gets too wide */
             padding: 0 15px;
             min-height: 60px;
             display: flex;
