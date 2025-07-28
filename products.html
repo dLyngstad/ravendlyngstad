@@ -77,7 +77,8 @@
         .shop-content-area {
             background-color: #f8f8f8; /* Light background for content area */
             padding: 40px 20px;
-            max-width: 960px; /* Match header content width */
+            /* Økt maksimal bredde for mer horisontal plass i enkelt kolonne */
+            max-width: 700px; /* Økt fra 960px for å sentrere enkeltprodukter bedre */
             margin: 0 auto;
         }
 
@@ -88,11 +89,13 @@
             margin-bottom: 40px;
         }
 
-        /* ======================== Product Grid & Card Styles (Similar to your gallery) ======================== */
+        /* ======================== Product Grid & Card Styles ======================== */
         .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Adjust minmax for card width */
-            gap: 30px; /* Space between cards */
+            /* Endret fra grid til flex for å stable produkter vertikalt */
+            display: flex;
+            flex-direction: column; /* Stabbler elementer under hverandre */
+            gap: 30px; /* Avstand mellom kortene */
+            align-items: center; /* Sentrerer produktkortene i midten av .shop-content-area */
         }
 
         .product-card {
@@ -105,7 +108,11 @@
             display: flex; /* Use flexbox to organize content vertically */
             flex-direction: column;
             justify-content: space-between; /* Push button to bottom if content varies */
-            min-height: 450px; /* Give cards a minimum height for consistency */
+            
+            /* Gi produktkortet mer horisontal plass */
+            width: 100%; /* Tar all tilgjengelig bredde i .product-grid */
+            max-width: 500px; /* Maksimal bredde for hvert kort, juster etter behov */
+            min-height: 500px; /* Økt minimumshøyde for å gi mer plass */
         }
 
         .product-image {
@@ -141,10 +148,9 @@
         /* The actual button inside this div will be styled by PayPal's SDK */
         div[id^="paypal-container-"] {
             margin: 0 auto; /* Center the PayPal button container */
-            max-width: 200px; /* Limit its width if it gets too wide */
+            max-width: 200px; /* Limit its width if it gets too wide, kan økes om nødvendig */
             padding: 0 15px; /* Add some side padding */
-            /* Added min-height to ensure button space even before render */
-            min-height: 40px; /* Approximate height of a PayPal button */
+            min-height: 60px; /* Økt for å sikre nok vertikal plass for knappen og eventuell PayPal-tekst */
             display: flex; /* Helps in centering the actual button within this div */
             justify-content: center;
             align-items: center;
