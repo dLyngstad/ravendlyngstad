@@ -77,8 +77,7 @@
         .shop-content-area {
             background-color: #f8f8f8; /* Light background for content area */
             padding: 40px 20px;
-            /* Økt maksimal bredde for mer horisontal plass i enkelt kolonne */
-            max-width: 700px; /* Økt fra 960px for å sentrere enkeltprodukter bedre */
+            max-width: 700px;
             margin: 0 auto;
         }
 
@@ -91,35 +90,32 @@
 
         /* ======================== Product Grid & Card Styles ======================== */
         .product-grid {
-            /* Endret fra grid til flex for å stable produkter vertikalt */
             display: flex;
-            flex-direction: column; /* Stabbler elementer under hverandre */
-            gap: 30px; /* Avstand mellom kortene */
-            align-items: center; /* Sentrerer produktkortene i midten av .shop-content-area */
+            flex-direction: column;
+            gap: 30px;
+            align-items: center;
         }
 
         .product-card {
             background-color: #fff;
             border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow like gallery */
-            overflow: hidden; /* Ensures image corners are rounded */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
             text-align: center;
-            padding-bottom: 20px; /* Space below content */
-            display: flex; /* Use flexbox to organize content vertically */
+            padding-bottom: 20px;
+            display: flex;
             flex-direction: column;
-            justify-content: space-between; /* Push button to bottom if content varies */
-            
-            /* Gi produktkortet mer horisontal plass */
-            width: 100%; /* Tar all tilgjengelig bredde i .product-grid */
-            max-width: 500px; /* Maksimal bredde for hvert kort, juster etter behov */
-            min-height: 500px; /* Økt minimumshøyde for å gi mer plass */
+            justify-content: space-between;
+            width: 100%;
+            max-width: 500px;
+            min-height: 500px;
         }
 
         .product-image {
             width: 100%;
-            height: 250px; /* Consistent height for all product images */
-            object-fit: cover; /* Crop image to fit without distorting */
-            border-bottom: 1px solid #eee; /* Separator from text */
+            height: 250px;
+            object-fit: cover;
+            border-bottom: 1px solid #eee;
             margin-bottom: 15px;
         }
 
@@ -133,29 +129,27 @@
             font-size: 0.95em;
             color: #666;
             margin: 0 15px 15px;
-            flex-grow: 1; /* Allows description to take available space */
+            flex-grow: 1;
         }
 
         .product-price {
             font-size: 1.2em;
             font-weight: bold;
-            color: #007bff; /* A standard blue for prices */
-            margin-bottom: 20px; /* Space before the button */
+            color: #007bff;
+            margin-bottom: 20px;
             margin-top: 10px;
         }
 
         /* Style for the div where PayPal renders the button (to center it) */
-        /* The actual button inside this div will be styled by PayPal's SDK */
         div[id^="paypal-container-"] {
-            margin: 0 auto; /* Center the PayPal button container */
-            max-width: 200px; /* Limit its width if it gets too wide, kan økes om nødvendig */
-            padding: 0 15px; /* Add some side padding */
-            min-height: 60px; /* Økt for å sikre nok vertikal plass for knappen og eventuell PayPal-tekst */
-            display: flex; /* Helps in centering the actual button within this div */
+            margin: 0 auto;
+            max-width: 200px;
+            padding: 0 15px;
+            min-height: 60px;
+            display: flex;
             justify-content: center;
             align-items: center;
         }
-
 
         /* ======================== Footer Styles ======================== */
         footer {
@@ -163,7 +157,7 @@
             color: #fff;
             text-align: center;
             padding: 20px 0;
-            margin-top: 40px; /* Space above footer */
+            margin-top: 40px;
             font-size: 0.9em;
         }
     </style>
@@ -198,11 +192,6 @@
                 <p class="product-price">NOK 899.00</p>
 
                 <div id="paypal-container-GJR9J4HRNUZC8"></div>
-                <script>
-                  paypal.HostedButtons({
-                    hostedButtonId: "GJR9J4HRNUZC8",
-                  }).render("#paypal-container-GJR9J4HRNUZC8")
-                </script>
             </div>
 
             <div class="product-card">
@@ -212,11 +201,6 @@
                 <p class="product-price">NOK 450.00</p>
 
                 <div id="paypal-container-4AZAEU5PCRTD2"></div>
-                <script>
-                  paypal.HostedButtons({
-                    hostedButtonId: "4AZAEU5PCRTD2",
-                  }).render("#paypal-container-4AZAEU5PCRTD2")
-                </script>
             </div>
 
         </div>
@@ -225,6 +209,18 @@
     <footer>
         <p>&copy; 2025 Raven D. Lyngstad. All rights reserved.</p>
     </footer>
+
+    <script>
+      paypal.HostedButtons({
+        hostedButtonId: "GJR9J4HRNUZC8",
+      }).render("#paypal-container-GJR9J4HRNUZC8")
+    </script>
+
+    <script>
+      paypal.HostedButtons({
+        hostedButtonId: "4AZAEU5PCRTD2",
+      }).render("#paypal-container-4AZAEU5PCRTD2")
+    </script>
 
 </body>
 </html>
