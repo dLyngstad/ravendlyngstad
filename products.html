@@ -8,14 +8,14 @@
     <style>
         /* ======================== Header Styles (Based on your screenshot) ======================== */
         header {
-            background-color: #222; /* Dark background */
+            background-color: #222;
             color: #fff;
             padding: 20px 0;
             text-align: center;
         }
 
         .header-content {
-            max-width: 960px; /* Adjust as needed */
+            max-width: 960px;
             margin: 0 auto;
             padding: 0 20px;
         }
@@ -23,12 +23,12 @@
         header h1 {
             font-size: 2.5em;
             margin-bottom: 5px;
-            font-weight: bold; /* Make sure it's bold like in your screenshot */
+            font-weight: bold;
         }
 
         .subtitle {
             font-size: 1.1em;
-            color: #aaa; /* Slightly lighter gray for subtitle */
+            color: #aaa;
             margin-top: 0;
             margin-bottom: 20px;
         }
@@ -39,21 +39,21 @@
             margin: 0 15px;
             font-size: 1.1em;
             transition: color 0.3s ease;
-            padding: 5px 0; /* Add padding for active state */
+            padding: 5px 0;
         }
 
         header nav a:hover {
-            color: #ffd700; /* Example hover color (gold) */
+            color: #ffd700;
         }
 
         header nav a.active-nav {
-            border-bottom: 2px solid #ffd700; /* Underline for active page */
+            border-bottom: 2px solid #ffd700;
             font-weight: bold;
         }
 
         .button-nav {
-            background-color: #ffd700; /* Gold button background */
-            color: #222; /* Dark text on button */
+            background-color: #ffd700;
+            color: #222;
             padding: 8px 20px;
             border-radius: 5px;
             text-decoration: none;
@@ -62,15 +62,15 @@
         }
 
         .button-nav:hover {
-            background-color: #e6c200; /* Slightly darker gold on hover */
+            background-color: #e6c200;
             color: #222;
         }
 
         /* ======================== Shop Content Area ======================== */
         .shop-content-area {
-            background-color: #f8f8f8; /* Light background for content area */
+            background-color: #f8f8f8;
             padding: 40px 20px;
-            max-width: 960px; /* Match header content width */
+            max-width: 960px;
             margin: 0 auto;
         }
 
@@ -81,30 +81,30 @@
             margin-bottom: 40px;
         }
 
-        /* ======================== Product Grid & Card Styles (Similar to your gallery) ======================== */
+        /* ======================== Product Grid & Card Styles ======================== */
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Adjust minmax for card width */
-            gap: 30px; /* Space between cards */
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
         }
 
         .product-card {
             background-color: #fff;
             border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow like gallery */
-            overflow: hidden; /* Ensures image corners are rounded */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
             text-align: center;
-            padding-bottom: 20px; /* Space below content */
-            display: flex; /* Use flexbox to organize content vertically */
+            padding-bottom: 20px;
+            display: flex;
             flex-direction: column;
-            justify-content: space-between; /* Push button to bottom if content varies */
+            justify-content: space-between;
         }
 
         .product-image {
             width: 100%;
-            height: 250px; /* Consistent height for all product images */
-            object-fit: cover; /* Crop image to fit without distorting */
-            border-bottom: 1px solid #eee; /* Separator from text */
+            height: 250px;
+            object-fit: cover;
+            border-bottom: 1px solid #eee;
             margin-bottom: 15px;
         }
 
@@ -118,32 +118,26 @@
             font-size: 0.95em;
             color: #666;
             margin: 0 15px 15px;
-            flex-grow: 1; /* Allows description to take available space */
+            flex-grow: 1;
         }
 
         .product-price {
             font-size: 1.2em;
             font-weight: bold;
-            color: #007bff; /* A standard blue for prices */
+            color: #007bff;
             margin-bottom: 20px;
             margin-top: 10px;
         }
-
-        /* Style for the div where PayPal renders the button (to center it) */
-        /* The actual button inside this div will be styled by PayPal's SDK */
-        div[id^="paypal-container-"] {
-            margin: 0 auto; /* Center the PayPal button container */
-            max-width: 200px; /* Limit its width if it gets too wide */
-            padding: 0 15px; /* Add some side padding */
-        }
-
+        
+        /* The CSS rule that styled the PayPal button container has been completely removed. */
+        
         /* ======================== Footer Styles ======================== */
         footer {
             background-color: #222;
             color: #fff;
             text-align: center;
             padding: 20px 0;
-            margin-top: 40px; /* Space above footer */
+            margin-top: 40px;
             font-size: 0.9em;
         }
     </style>
