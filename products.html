@@ -137,7 +137,6 @@
             padding: 0 15px; /* Add some side padding */
         }
 
-
         /* ======================== Footer Styles ======================== */
         footer {
             background-color: #222;
@@ -150,7 +149,7 @@
     </style>
 
     <script
-      src="https://www.paypal.com/sdk/js?client-id=BAA_EI1PEbb2JIpFt45Lz8MYi7_8vNhGodR9k5qa0KkmHMXq6SvmGuoi6vTg-VmOCa8EMdNGveaoU-ZTFU&components=hosted-buttons&disable-funding=venmo&currency=NOK">
+        src="https://www.paypal.com/sdk/js?client-id=BAA_EI1PEbb2JIpFt45Lz8MYi7_8vNhGodR9k5qa0KkmHMXq6SvmGuoi6vTg-VmOCa8EMdNGveaoU-ZTFU&components=hosted-buttons&disable-funding=venmo&currency=NOK">
     </script>
 </head>
 <body>
@@ -163,10 +162,12 @@
                 <a href="about.html">About</a>
                 <a href="gallery.html">Galleri</a>
                 <a href="contact.html">Kontakt</a>
-                <a href="products.html" class="active-nav">Shop</a> <a href="register.html" class="button-nav">Registrer</a>
+                <a href="products.html" class="active-nav">Shop</a>
+                <a href="register.html" class="button-nav">Registrer</a>
             </nav>
         </div>
     </header>
+    
     <main class="shop-content-area">
         <h2 class="section-title">Produkter</h2>
 
@@ -180,9 +181,9 @@
 
                 <div id="paypal-container-GJR9J4HRNUZC8"></div>
                 <script>
-                  paypal.HostedButtons({
-                    hostedButtonId: "GJR9J4HRNUZC8",
-                  }).render("#paypal-container-GJR9J4HRNUZC8")
+                    paypal.HostedButtons({
+                        hostedButtonId: "GJR9J4HRNUZC8",
+                    }).render("#paypal-container-GJR9J4HRNUZC8");
                 </script>
             </div>
 
@@ -192,15 +193,15 @@
                 <p class="product-description">Start din kunstneriske reise med dette komplette akrylmalerisettet. Inneholder pensler, farger og lerret.</p>
                 <p class="product-price">NOK 450.00</p>
 
-                <div id="paypal-container-ANOTHER_UNIQUE_ID_FOR_PAINTING_SET"></div>
+                <div id="paypal-container-ANOTHER_VALID_PAYPAL_ID"></div>
                 <script>
-                  paypal.HostedButtons({
-                    hostedButtonId: "ANOTHER_UNIQUE_ID_FOR_PAINTING_SET",
-                  }).render("#paypal-container-ANOTHER_UNIQUE_ID_FOR_PAINTING_SET")
+                    paypal.HostedButtons({
+                        hostedButtonId: "ANOTHER_VALID_PAYPAL_ID",
+                    }).render("#paypal-container-ANOTHER_VALID_PAYPAL_ID");
                 </script>
             </div>
 
-            </div>
+        </div>
     </main>
 
     <footer>
