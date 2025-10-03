@@ -172,6 +172,42 @@
       font-weight: bold;
     }
 
+
+
+    /* ABOUT SECTION:*/
+/* Add this CSS with your other styles */
+.about-container {
+  display: flex; /* Use flexbox for easy alignment */
+  align-items: center; /* Vertically align items to the center */
+  gap: 2rem; /* Add some space between the image and text */
+  margin-top: 1rem;
+}
+
+.about-container img {
+  width: 40%; /* Make the image take up part of the container */
+  max-width: 300px; /* Prevent it from getting too large */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 8px; /* Match the style of your gallery images */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Add a subtle shadow for depth */
+}
+
+.about-container .about-text {
+  width: 60%; /* The text takes the remaining space */
+}
+
+/* For responsive design on smaller screens */
+@media (max-width: 600px) {
+  .about-container {
+    flex-direction: column; /* Stack image and text vertically */
+    text-align: center;
+  }
+
+  .about-container img,
+  .about-container .about-text {
+    width: 100%; /* Make both take the full width on small screens */
+  }
+}
+    
   </style>
 </head>
 <body>
