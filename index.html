@@ -225,7 +225,8 @@
   border-radius: 8px;
   font-weight: 600;
   position: relative;
-  overflow: hidden; /* <-- VIKTIG FIKS: Holder animasjonen inne i knappen */
+  overflow: hidden; /* Holder animasjonen inne i knappen */
+  isolation: isolate; /* <-- NY FIKS: Tvinger glimtet til å respektere "overflow" */
   transition: all 0.3s ease;
   text-decoration: none !important;
   border: 1px solid #a88734; /* Mørkere gullfarge for rammen */
@@ -259,7 +260,7 @@
   animation: white-glint-nav 6s infinite;
 }
 
- 
+
   </style>
 </head>
 <body>
