@@ -16,18 +16,20 @@
 
     <h1>Registrer maleri</h1>
     <p>Fyll inn ID-koden fra baksiden av maleriet og din kontaktinformasjon for å registrere deg som eier.</p>
+    <p>Navn, tlf, email ikke nødvendig</p>
+    <p></p>
 
     <form id="painting-form">
       <label for="painting-id">ID på maleriet: *</label>
       <input type="text" id="painting-id" required>
 
-      <label for="owner-name">Ditt navn:</label>
-      <input type="text" id="owner-name">
+      <label for="owner-name">Ditt navn: *</label>
+      <input type="text" id="owner-name" required>
 
-      <label for="owner-email">Din e-post:</label>
-      <input type="email" id="owner-email">
+      <label for="owner-email">Din e-post: *</label>
+      <input type="email" id="owner-email" required>
 
-      <label for="owner-phone">Ditt telefonnummer:</label>
+      <label for="owner-phone">Ditt telefonnummer (Hvis ønskelig):</label>
       <input type="tel" id="owner-phone">
 
       <button type="submit">Send registrering</button>
