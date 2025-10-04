@@ -209,33 +209,38 @@
 }
 
 
-    /* -- ANIMASJON FOR REGISTRER-KNAPPEN I MENYEN -- */
-@keyframes gold-glint-nav {
+/* -- FORBEDRET ANIMASJON FOR REGISTRER-KNAPPEN I MENYEN -- */
+@keyframes white-glint-nav {
   0% { transform: translateX(-110%) skewX(-25deg); }
   15% { transform: translateX(150%) skewX(-25deg); }
   100% { transform: translateX(150%) skewX(-25deg); }
 }
 
-/* Styling for å gjøre "Registrer"-linken om til en knapp */
+/* Styling for å gjøre "Registrer"-linken om til en gyllen knapp */
 .nav-button-register {
-  background-color: #6a5acd;
-  color: #fff !important; /* !important for å overstyre annen link-farge */
+  /* Gyllen gradient for en premium følelse */
+  background: linear-gradient(145deg, #f0c14b, #e4a72d);
+  color: #111 !important; /* Mørk tekst for god kontrast på gull */
   padding: 10px 20px;
   border-radius: 8px;
   font-weight: 600;
   position: relative;
-  overflow: hidden;
+  overflow: hidden; /* <-- VIKTIG FIKS: Holder animasjonen inne i knappen */
   transition: all 0.3s ease;
-  text-decoration: none !important; /* Fjerner understreking */
+  text-decoration: none !important;
+  border: 1px solid #a88734; /* Mørkere gullfarge for rammen */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
 }
 
 .nav-button-register:hover {
-    color: #fff !important;
+    color: #000 !important;
     transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(106, 90, 205, 0.5);
+    box-shadow: 0 5px 12px rgba(0,0,0,0.25);
+    /* Lyser opp litt ved hover */
+    background: linear-gradient(145deg, #f5d07a, #e7ae43);
 }
 
-/* Selve glins-effekten */
+/* Selve glins-effekten (nå hvit) */
 .nav-button-register::before {
   content: '';
   position: absolute;
@@ -243,16 +248,18 @@
   left: 0;
   width: 50%;
   height: 100%;
+  /* Hvit glins med gjennomsiktighet */
   background: linear-gradient(
     to right,
-    rgba(255, 215, 0, 0) 0%,
-    rgba(255, 215, 0, 0.4) 50%,
-    rgba(255, 215, 0, 0) 100%
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.5) 50%,
+    rgba(255, 255, 255, 0) 100%
   );
   transform: translateX(-110%) skewX(-25deg);
-  animation: gold-glint-nav 6s infinite;
+  animation: white-glint-nav 6s infinite;
 }
-    
+
+ 
   </style>
 </head>
 <body>
