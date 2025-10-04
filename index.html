@@ -207,6 +207,51 @@
     width: 100%; /* Make both take the full width on small screens */
   }
 }
+
+
+    /* -- ANIMASJON FOR REGISTRER-KNAPPEN I MENYEN -- */
+@keyframes gold-glint-nav {
+  0% { transform: translateX(-110%) skewX(-25deg); }
+  15% { transform: translateX(150%) skewX(-25deg); }
+  100% { transform: translateX(150%) skewX(-25deg); }
+}
+
+/* Styling for å gjøre "Registrer"-linken om til en knapp */
+.nav-button-register {
+  background-color: #6a5acd;
+  color: #fff !important; /* !important for å overstyre annen link-farge */
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  text-decoration: none !important; /* Fjerner understreking */
+}
+
+.nav-button-register:hover {
+    color: #fff !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(106, 90, 205, 0.5);
+}
+
+/* Selve glins-effekten */
+.nav-button-register::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 215, 0, 0) 0%,
+    rgba(255, 215, 0, 0.4) 50%,
+    rgba(255, 215, 0, 0) 100%
+  );
+  transform: translateX(-110%) skewX(-25deg);
+  animation: gold-glint-nav 6s infinite;
+}
     
   </style>
 </head>
@@ -219,7 +264,7 @@
       <a href="#about">About</a>
       <a href="#gallery">Galleri</a>
       <a href="#contact">Kontakt</a>
-        <a href="register.html">Registrer</a>
+        <a href="register.html" class="nav-button-register">Registrer</a>
 
 
     </nav>
