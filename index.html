@@ -209,7 +209,7 @@
 }
 
 
-/* -- FORBEDRET ANIMASJON FOR REGISTRER-KNAPPEN I MENYEN (V3 - UNIVERSAL FIX) -- */
+/* -- FORBEDRET ANIMASJON FOR REGISTRER-KNAPPEN I MENYEN (ENDELIG FIKS) -- */
 @keyframes white-glint-nav {
   0% { transform: translateX(-100%) skewX(-25deg); }
   100% { transform: translateX(250%) skewX(-25deg); }
@@ -223,14 +223,15 @@
   border-radius: 8px;
   font-weight: 600;
   position: relative;
-  overflow: hidden; /* Holder animasjonen inne i knappen */
+  overflow: hidden; /* VIKTIG: Holder animasjonen inne i knappen */
   transition: all 0.3s ease;
   text-decoration: none !important;
   border: 1px solid #a88734;
   box-shadow: 0 2px 4px rgba(0,0,0,0.15);
   display: inline-block;
-  /* NY OG FORBEDRET FIKS: Tvinger et nytt "stacking context" som fungerer overalt */
-  transform: translateZ(0);
+  /* Denne kombinasjonen tvinger en ny "stablekontekst" uten å ødelegge animasjonen */
+  isolation: isolate;
+  z-index: 0;
 }
 
 .nav-button-register:hover {
@@ -240,9 +241,8 @@
     background: linear-gradient(145deg, #f5d07a, #e7ae43);
 }
 
-/* Selve glins-effekten, nå som et span-element */
+/* Selve glins-effekten, som et span-element */
 .nav-button-register span {
-  content: '';
   position: absolute;
   top: 0;
   left: 0;
@@ -257,6 +257,7 @@
   animation: white-glint-nav 6s infinite;
   transform: translateX(-100%) skewX(-25deg);
 }
+
 
 
 
