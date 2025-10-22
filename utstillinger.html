@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <title>Raven D. Lyngstad – Utstillinger</title>
+  
+  <style>
+    /* === KJERNESTILER (fra index.html) === */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+    header {
+      background-color: #222;
+      color: white;
+      padding: 2rem;
+      text-align: center;
+    }
+    nav a {
+      color: white;
+      margin: 0 1rem;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    section {
+      padding: 2rem;
+      max-width: 900px; /* Litt bredere for utstillinger */
+      margin: auto;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: #eee;
+      margin-top: 2rem;
+    }
+
+    /* === NYE STILER (for utstillinger.html) === */
+    
+    .exhibition-list {
+      display: grid;
+      /* Lager 2 kolonner på medium skjermer, 1 på små */
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+    }
+
+    .exhibition-card {
+      background-color: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+      overflow: hidden; /* For å holde bildet pent inni */
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .exhibition-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.12);
+    }
+
+    .exhibition-card img.card-image {
+      width: 100%;
+      height: 220px;
+      object-fit: cover; /* Sørger for at bildet fyller plassen uten å strekkes */
+      display: block;
+    }
+
+    .exhibition-content {
+      padding: 1.5rem;
+    }
+
+    .exhibition-content h3 {
+      margin-top: 0;
+      font-size: 1.5rem;
+      color: #222;
+    }
+
+    .exhibition-content .date,
+    .exhibition-content .location {
+      font-style: italic;
+      color: #555;
+      margin-bottom: 0.5rem;
+    }
+
+    .exhibition-content p {
+      line-height: 1.6;
+    }
+
+    .modal-btn {
+      background-color: #333;
+      color: white;
+      border: none;
+      padding: 0.8rem 1.2rem;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 1rem;
+      transition: background-color 0.3s ease;
+    }
+    
+    .modal-btn:hover {
+      background-color: #555;
+    }
+    
+    /* === MODAL / LIGHTBOX (Feature) === */
+
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.85);
+      display: none; /* Skjult som standard */
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+      padding: 2rem;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+    
+    .modal-content {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 8px;
+      max-width: 700px;
+      width: 100%;
+      max-height: 90vh; /* Maks høyde */
+      overflow-y: auto; /* Scroll hvis innholdet er for langt */
+      position: relative;
+    }
+    
+    .modal-content img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 15px;
+      right: 25px;
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #555;
+      cursor: pointer;
+      line-height: 1;
+    }
+    
+    .close-btn:hover {
+      color: #000;
+    }
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Raven D. Lyngstad</h1>
+    <p>Utstillinger</p>
+    <nav>
+      <a href="index.html#about">About</a>
+      <a href="index.html#gallery">Galleri</a>
+      <a href="utstillinger.html">Utstillinger</a> <a href="index.html#contact">Kontakt</a>
+    </nav>
+  </header>
+
+  <section id="current">
+    <h2>Nåværende & Kommende Utstillinger</h2>
+    
+    <div class="exhibition-list">
+      
+      <div class="exhibition-card">
+        <img class="card-image" src="https://via.placeholder.com/600x400.png?text=Plakat+Her" alt="Plakat for Vårutstillingen">
+        <div class="exhibition-content">
+          <h3>Vårutstillingen 2026</h3>
+          <p class="date">1. Mars 2026 - 30. April 2026</p>
+          <p class="location">Galleri Fjell</p>
+          <p>En samleutstilling som fokuserer på naturens oppvåkning. Jeg deltar med tre nye verk...</p>
+          <button class="modal-btn" data-modal-target="modal1">Mer Info & Bilder</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="past">
+    <h2>Tidligere Utstillinger</h2>
+    
+    <div class="exhibition-list">
+
+      <div class="exhibition-card">
+        <img class="card-image" src="https://via.placeholder.com/600x400.png?text=Bilde+fra+Galleri+Sol" alt="Galleri Sol">
+        <div class="exhibition-content">
+          <h3>Separatutstilling: "Horisont"</h3>
+          <p class="date">August 2025</p>
+          <p class="location">Galleri Sol, Bergen</p>
+          <p>Min første separatutstilling, hvor jeg utforsket lyset ved kysten. 12 verk ble vist.</p>
+          <button class="modal-btn" data-modal-target="modal2">Se Bilder fra Åpningen</button>
+        </div>
+      </div>
+
+      <div class="exhibition-card">
+        <img class="card-image" src="https://via.placeholder.com/600x400.png?text=Bilde+fra+Sommer" alt="Juryens utvalg">
+        <div class="exhibition-content">
+          <h3>Sommerutstillingen</h3>
+          <p class="date">Juni 2025</p>
+          <p class="location">Kunstnerhuset</p>
+          <p>Antatt med ett verk, "Kveldslys ved jordet", i den juryerte årsutstillingen.</p>
+          <button class="modal-btn" data-modal-target="modal3">Se Verket</button>
+        </div>
+      </div>
+      
+      </div>
+  </section>
+
+  <footer>
+    &copy; 2025 Raven D. Lyngstad. All rights reserved.
+  </footer>
+
+  <div class="modal-overlay" id="modal1">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <h2>Vårutstillingen 2026</h2>
+      <img src="https://via.placeholder.com/600x400.png?text=Plakat+Detalj" alt="Plakat">
+      <p>Dette er en flott mulighet til å se mine nyeste verk. Utstillingen har fokus på... (mer tekst her).</p>
+      <p><strong>Åpningstider:</strong> Man-Fre 10-17, Lør 11-16.</p>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="modal2">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <h2>Separatutstilling: "Horisont" (2025)</h2>
+      <img src="https://via.placeholder.com/600x400.png?text=Bilde+fra+åpningen" alt="Bilde fra åpningen">
+      <p>Bilder fra åpningskvelden på Galleri Sol. Takk til alle som kom!</p>
+      <img src="https://via.placeholder.com/600x400.png?text=Installasjonsbilde+1" alt="Installasjonsbilde" style="margin-top: 1rem;">
+    </div>
+  </div>
+  
+  <div class="modal-overlay" id="modal3">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <h2>Sommerutstillingen (2025)</h2>
+      <img src="images/Jordet.png" alt="Kveldslys ved jordet"> <p>Mitt antatte verk, "Kveldslys ved jordet" (Olje på lerret, 80x100cm).</p>
+    </div>
+  </div>
+
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      
+      // Finner alle knapper som skal åpne en modal
+      const modalButtons = document.querySelectorAll('.modal-btn');
+      
+      // Finner alle lukkeknapper
+      const closeButtons = document.querySelectorAll('.close-btn');
+      
+      // Finner alle overlays (bakgrunnene)
+      const modalOverlays = document.querySelectorAll('.modal-overlay');
+
+      // Funksjon for å åpne modal
+      modalButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          // Finner målet fra knappens 'data-modal-target' attributt
+          const modalId = button.getAttribute('data-modal-target');
+          const modal = document.getElementById(modalId);
+          if (modal) {
+            modal.classList.add('active');
+          }
+        });
+      });
+
+      // Funksjon for å lukke modal med (x)
+      closeButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          // Finner den forelderen som er modalen og fjerner 'active'
+          button.closest('.modal-overlay').classList.remove('active');
+        });
+      });
+
+      // Funksjon for å lukke modal ved å klikke på bakgrunnen
+      modalOverlays.forEach(overlay => {
+        overlay.addEventListener('click', (e) => {
+          // Lukker kun hvis man klikker på selve overlayen, ikke innholdet
+          if (e.target === overlay) {
+            overlay.classList.remove('active');
+          }
+        });
+      });
+      
+    });
+  </script>
+
+</body>
+</html>
