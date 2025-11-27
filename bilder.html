@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Raven D. Lyngstad – Vlog</title>
+  <style>
+    /* --- CORE STYLES (Kept from your original) --- */
+    * { box-sizing: border-box; }
+    body { font-family: Arial, sans-serif; margin: 0; background-color: #f9f9f9; color: #333; }
+    header { background-color: #222; color: white; padding: 2rem; text-align: center; }
+    nav a { color: white; margin: 0 1rem; text-decoration: none; font-weight: bold; }
+    footer { text-align: center; padding: 1rem; background-color: #eee; margin-top: 2rem; }
+    section { padding: 2rem; max-width: 1000px; /* Increased width for vlog readability */ margin: auto; }
+
+    /* --- NAVIGATION BUTTON STYLE --- */
+    @keyframes white-glint-nav {
+      0% { transform: translateX(-100%) skewX(-25deg); }
+      100% { transform: translateX(250%) skewX(-25deg); }
+    }
+    .nav-button-register {
+      background: linear-gradient(145deg, #f0c14b, #e4a72d);
+      color: #111 !important;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: 600;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      text-decoration: none !important;
+      border: 1px solid #a88734;
+      display: inline-block;
+      isolation: isolate;
+    }
+    .nav-button-register span {
+      position: absolute; top: 0; left: 0; width: 40%; height: 100%;
+      background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0) 100%);
+      animation: white-glint-nav 6s infinite; transform: translateX(-100%) skewX(-25deg);
+    }
+
+    /* --- VLOG SPECIFIC STYLES --- */
+    
+    /* A wider grid for vlog entries so text is readable */
+    .vlog-grid {
+      display: grid;
+      /* Min-width 300px ensures images aren't too small to see details */
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+      gap: 2rem;
+    }
+
+    /* The container for a single vlog entry */
+    .vlog-card {
+      background: white;
+      border-radius: 8px;
+      overflow: hidden; /* Keeps image corners rounded */
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05); /* Soft shadow for depth */
+      transition: transform 0.2s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .vlog-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+    }
+
+    .vlog-image-container {
+      position: relative;
+      width: 100%;
+      height: 250px; /* Fixed height for uniformity */
+      overflow: hidden;
+      background-color: #eee;
+    }
+
+    .vlog-image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* Ensures image fills the box without stretching */
+      cursor: zoom-in;
+      transition: transform 0.5s ease;
+    }
+    
+    .vlog-card:hover .vlog-image-container img {
+      transform: scale(1.05); /* Subtle zoom on hover */
+    }
+
+    /* The Date Badge */
+    .date-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: bold;
+      backdrop-filter: blur(2px);
+      z-index: 2;
+    }
+
+    .vlog-content {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .vlog-title {
+      margin: 0;
+      font-size: 1.2rem;
+      color: #222;
+    }
+
+    .vlog-desc {
+      margin: 0;
+      color: #666;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    /* --- LIGHTBOX STYLES (Unchanged) --- */
+    .lightbox-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: none; justify-content: center; align-items: center; z-index: 1000; }
+    .lightbox-overlay.active { display: flex; }
+    .lightbox-content { display: flex; flex-direction: column; align-items: center; gap: 1rem; padding: 1rem; }
+    .zoom-container { display: flex; gap: 2rem; justify-content: center; align-items: center; position: relative; }
+    .image-area { position: relative; width: 400px; }
+    #main-image { width: 100%; display: block; border: 1px solid #ccc; }
+    #lens { position: absolute; border: 2px solid #000; opacity: 0.4; background-color: white; cursor: crosshair; display: none; pointer-events: none; }
+    .zoomed-area { width: 400px; height: 400px; overflow: hidden; border: 1px solid #ccc; position: relative; }
+    #zoomed-image { position: absolute; }
+    .zoom-controls { display: flex; align-items: center; gap: 0.75rem; color: white; background: rgba(0,0,0,0.4); padding: 0.5rem 1rem; border-radius: 8px; user-select: none; }
+    #zoom-slider { cursor: pointer; }
+    #zoom-value { min-width: 45px; text-align: left; font-weight: bold; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Raven D. Lyngstad</h1>
+    <p>Kunstnerlogg</p> <nav>
+      <a href="index.html">Hjem</a>
+      <a href="#vlog">Logg</a>
+      <a href="register.html" class="nav-button-register">Registrer <span></span></a>
+    </nav>
+  </header>
+
+  <section id="vlog">
+    <h2>Siste oppdateringer</h2>
+    <div class="vlog-grid">
+
+      <article class="vlog-card">
+        <div class="vlog-image-container">
+          <div class="date-badge">27. Nov 2025</div>
+          <img class="lightbox-img" 
+               src="https://i.imgur.com/3lgWpD4.png" 
+               data-highres="https://i.imgur.com/3lgWpD4.png" 
+               alt="Vinterlandskap">
+        </div>
+        <div class="vlog-content">
+          <h3 class="vlog-title">Arbeid i studio</h3>
+          <p class="vlog-desc">I dag jobbet jeg med lyssettingen i det nye vinterlandskapet. Det er utfordrende å få snøen til å se kald ut, men samtidig levende.</p>
+        </div>
+      </article>
+
+      <article class="vlog-card">
+        <div class="vlog-image-container">
+           <div class="date-badge">15. Nov 2025</div>
+           <img class="lightbox-img" 
+                src="images/hoyballer.png" 
+                data-highres="images/hoyballer.png" 
+                alt="Høyballer">
+        </div>
+        <div class="vlog-content">
+          <h3 class="vlog-title">Høstfarger</h3>
+          <p class="vlog-desc">Inspirasjonstur til jordene utenfor Trondheim. Fargene endrer seg så raskt nå.</p>
+        </div>
+      </article>
+
+      <article class="vlog-card">
+        <div class="vlog-image-container">
+           <div class="date-badge">02. Okt 2025</div>
+           <img class="lightbox-img" 
+                src="https://i.imgur.com/wLMtBD6.png" 
+                data-highres="https://i.imgur.com/DDYiyzj.jpeg" 
+                alt="Skisse">
+        </div>
+        <div class="vlog-content">
+          <h3 class="vlog-title">Skisser til ny utstilling</h3>
+          <p class="vlog-desc">Startet planleggingen av "Vårlys". Her er en grovskisse av hovedverket.</p>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 Raven D. Lyngstad
+  </footer>
+
+  <div class="lightbox-overlay" id="lightbox">
+    <div class="lightbox-content">
+      <div class="zoom-container">
+        <div class="image-area">
+          <img id="main-image" src="" alt="Zoom image">
+          <div id="lens"></div>
+        </div>
+        <div class="zoomed-area">
+          <img id="zoomed-image" src="" alt="Zoomed">
+        </div>
+      </div>
+      <div class="zoom-controls">
+        <label for="zoom-slider">Zoom</label>
+        <input type="range" id="zoom-slider" min="2" max="10" step="0.1" value="4">
+        <span id="zoom-value">4.0x</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const lightbox = document.getElementById('lightbox');
+    const lens = document.getElementById('lens');
+    const mainImage = document.getElementById('main-image');
+    const zoomedImage = document.getElementById('zoomed-image');
+    const zoomedArea = document.querySelector('.zoomed-area');
+    const zoomSlider = document.getElementById('zoom-slider');
+    const zoomValue = document.getElementById('zoom-value');
+    let lastMouseEvent = null;
+
+    document.querySelectorAll('.lightbox-img').forEach(img => {
+      img.addEventListener('click', () => {
+        const highResSrc = img.getAttribute('data-highres') || img.src;
+        mainImage.src = highResSrc;
+        zoomedImage.src = highResSrc;
+        mainImage.onload = () => {
+          lightbox.classList.add('active');
+          applyZoom(); 
+        };
+      });
+    });
+
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) {
+        lightbox.classList.remove('active');
+        lens.style.display = 'none';
+        lastMouseEvent = null;
+      }
+    });
+
+    zoomSlider.addEventListener('input', applyZoom);
+    mainImage.addEventListener('mousemove', moveLens);
+    lens.addEventListener('mousemove', moveLens);
+    mainImage.addEventListener('mouseenter', () => lens.style.display = 'block');
+    mainImage.addEventListener('mouseleave', () => lens.style.display = 'none');
+
+    function applyZoom() {
+      const zoomLevel = parseFloat(zoomSlider.value);
+      zoomValue.textContent = `${zoomLevel.toFixed(1)}x`;
+      const newLensWidth = zoomedArea.offsetWidth / zoomLevel;
+      const newLensHeight = zoomedArea.offsetHeight / zoomLevel;
+      lens.style.width = `${newLensWidth}px`;
+      lens.style.height = `${newLensHeight}px`;
+      zoomedImage.style.width = `${mainImage.offsetWidth * zoomLevel}px`;
+      zoomedImage.style.height = `${mainImage.offsetHeight * zoomLevel}px`;
+      if (lastMouseEvent) moveLens(lastMouseEvent);
+    }
+
+    function moveLens(e) {
+      lastMouseEvent = e;
+      const mainRect = mainImage.getBoundingClientRect();
+      let cursorX = e.clientX - mainRect.left;
+      let cursorY = e.clientY - mainRect.top;
+      let lensX = cursorX - (lens.offsetWidth / 2);
+      let lensY = cursorY - (lens.offsetHeight / 2);
+      lensX = Math.max(0, Math.min(lensX, mainImage.offsetWidth - lens.offsetWidth));
+      lensY = Math.max(0, Math.min(lensY, mainImage.offsetHeight - lens.offsetHeight));
+      lens.style.left = `${lensX}px`;
+      lens.style.top = `${lensY}px`;
+      const ratioX = zoomedImage.offsetWidth / mainImage.offsetWidth;
+      const ratioY = zoomedImage.offsetHeight / mainImage.offsetHeight;
+      let zoomedLeft = cursorX * ratioX - (zoomedArea.offsetWidth / 2);
+      let zoomedTop = cursorY * ratioY - (zoomedArea.offsetHeight / 2);
+      zoomedLeft = Math.max(0, Math.min(zoomedLeft, zoomedImage.offsetWidth - zoomedArea.offsetWidth));
+      zoomedTop = Math.max(0, Math.min(zoomedTop, zoomedImage.offsetHeight - zoomedArea.offsetHeight));
+      zoomedImage.style.left = `-${zoomedLeft}px`;
+      zoomedImage.style.top = `-${zoomedTop}px`;
+    }
+  </script>
+
+</body>
+</html>
