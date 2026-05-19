@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
             category: 'chemistry',
             categoryName: 'Chemistry',
             title: 'Fast Form',
-            model: '<br><img src="images/Fast_Form.png">',
+            model: '<br><img src="Fast_Form.png">',
             concept: 'Nevene illustrerer hvodan i fast form så er partiklene rigide.',
             extraInfo: 'Husk at i fast form er det fortsatt bevegelse i partiklene.'
         },
@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
             category: 'chemistry',
             categoryName: 'Chemistry',
             title: 'Vannform',
-            model: '<br><img src="images/Water_form.png">',
+            model: '<br><img src="Water_form.png">',
             concept: 'Nevene glir innom hverandre for å illustrere den dynamiske formen til vann.',
             extraInfo: ''
         },
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
             category: 'chemistry',
             categoryName: 'Chemistry',
             title: 'Gassform',
-            model: '<br><img src="images/Water_form.png">',
+            model: '<br><img src="Water_form.png">',
             concept: 'Nevene beveger seg raskt og sporadisk i store bevegelser',
             extraInfo: ''
         },
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
             category: 'chemistry',
             categoryName: 'Chemistry',
             title: '',
-            model: '<br><img src="images/Water_form.png">',
+            model: '<br><img src="Water_form.png">',
             concept: 'Nevene beveger seg raskt og sporadisk i store bevegelser',
             extraInfo: ''
         },
