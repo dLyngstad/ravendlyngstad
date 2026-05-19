@@ -1,421 +1,73 @@
-/* --- 90s RETRO CSS STYLES (Improved UX) --- */
-:root {
-    --primary-color: #000080;
-    --secondary-color: #008080;
-    --bg-color: #c0c0c0;
-    --card-bg: #ffffff;
-    --text-color: #000000;
-    --border-radius: 0px;
-    --transition-fast: 0.15s ease;
-    --transition-med: 0.25s ease;
-}
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestikulering BLANKT</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Gestikulering</h1>
+        <p>Hjelpemiddel for deg som lærer</p>
+    </header>
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+    <section class="importance-section">
+        <div class="importance-content">
+            <h2>Håndmodeller i naturfagsundervisning</h2>
+            <p>Gestikulering</p>
+            <ul>
+                <li><strong>Om siden:</strong> Gestikulering er et kraftig verktøy for deg som lærer. <br> 
+                På denne nettsiden finner du forslag til ulike håndmodeller du kan utføre under undervisning. <br>
+                </li>
+               
+            </ul>
+        </div>
+    </section>
 
-body {
-    font-family: "Times New Roman", Times, serif;
-    background-color: var(--bg-color);
-    background-image: url('https://www.transparenttextures.com/patterns/cubes.png');
-    color: var(--text-color);
-    line-height: 1.4;
-}
+    <div class="search-container">
+        <div class="search-wrapper">
+            <span class="search-icon" aria-hidden="true">&#128269;</span>
+            <input type="text" id="search-bar" placeholder="Søk på håndmodeller" aria-label="Søk etter gestikulering">
+            <button class="search-clear hidden" id="search-clear" aria-label="Tøm søk">&times;</button>
+        </div>
+        <p class="result-count" id="result-count" aria-live="polite"></p>
+    </div>
 
-/* ============ HEADER ============ */
-header {
-    background-color: var(--primary-color);
-    color: #ffff00;
-    text-align: center;
-    padding: 2rem 1rem;
-    border-bottom: 4px ridge #ffffff;
-}
+    <nav class="filters" aria-label="Filtrer etter kategori">
+        <button class="filter-btn active" data-filter="all">Alle</button>
+        <button class="filter-btn" data-filter="physics">Fysikk</button>
+        <button class="filter-btn" data-filter="chemistry">Kjemi</button>
+        <button class="filter-btn" data-filter="biology">Biologi</button>
+        <button class="filter-btn" data-filter="earth">Mattep</button>
+    </nav>
 
-header h1 {
-    font-size: 3rem;
-    text-transform: uppercase;
-    letter-spacing: 5px;
-    text-shadow: 3px 3px #000000;
-}
+    <div class="container">
+        <div class="grid" id="gesture-grid" role="list"></div>
+        <div id="no-results" class="no-results hidden">
+            <span class="no-results-icon" aria-hidden="true">&#128533;</span>
+            <p>Ingen resultater funnet.</p>
+            <p class="no-results-hint">Prøv et annet søkeord eller endre filter.</p>
+        </div>
+    </div>
 
-header p {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #ffffff;
-    margin-top: 10px;
-}
+    <div id="gesture-modal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="modal-content">
+            <button class="close-btn" id="close-modal" aria-label="Lukk">&times;</button>
+            <span class="card-category" id="modal-category"></span>
+            <h2 id="modal-title"></h2>
+            <div class="modal-body">
+                <p><strong>Modellen:</strong> <span id="modal-model"></span></p>
+                <p><strong>Konseptet:</strong> <span id="modal-concept"></span></p>
+                <hr>
+                <h3>BLANKT</h3>
+                <p id="modal-extra"></p>
+            </div>
+        </div>
+    </div>
 
-/* ============ IMPORTANCE SECTION ============ */
-.importance-section {
-    background-color: var(--bg-color);
-    padding: 2rem 1rem;
-    border: 3px inset #ffffff;
-    margin: 10px;
-}
+    <button class="back-to-top hidden" id="back-to-top" aria-label="Tilbake til toppen">&#8679;</button>
 
-.importance-content h2 {
-    color: #800000;
-    text-decoration: underline;
-    margin-bottom: 1rem;
-    text-align: center;
-}
-
-.importance-content li {
-    background: #ffffff;
-    padding: 1rem;
-    margin-bottom: 10px;
-    border-top: 2px solid #ffffff;
-    border-left: 2px solid #ffffff;
-    border-right: 2px solid #808080;
-    border-bottom: 2px solid #808080;
-}
-
-/* ============ SEARCH BAR ============ */
-.search-container {
-    max-width: 600px;
-    margin: 1.5rem auto 0.5rem;
-    text-align: center;
-    padding: 0 1rem;
-}
-
-.search-wrapper {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    width: 80%;
-}
-
-.search-icon {
-    position: absolute;
-    left: 8px;
-    font-size: 1rem;
-    pointer-events: none;
-    opacity: 0.5;
-}
-
-#search-bar {
-    width: 100%;
-    padding: 8px 32px 8px 30px;
-    font-family: "Courier New", Courier, monospace;
-    font-size: 1rem;
-    background-color: #ffffff;
-    border-top: 3px solid #808080;
-    border-left: 3px solid #808080;
-    border-right: 3px solid #ffffff;
-    border-bottom: 3px solid #ffffff;
-    outline: none;
-    transition: box-shadow var(--transition-fast);
-}
-
-#search-bar:focus {
-    box-shadow: 0 0 0 2px var(--primary-color);
-}
-
-.search-clear {
-    position: absolute;
-    right: 4px;
-    background: none;
-    border: none;
-    font-size: 1.3rem;
-    cursor: pointer;
-    color: #666;
-    padding: 2px 6px;
-    line-height: 1;
-}
-
-.search-clear:hover {
-    color: #000;
-}
-
-.result-count {
-    font-size: 0.85rem;
-    color: #555;
-    margin-top: 6px;
-    min-height: 1.2em;
-}
-
-/* ============ FILTER BUTTONS ============ */
-.filters {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 5px;
-    padding: 1rem;
-    background-color: #808080;
-    border: 2px outset #ffffff;
-}
-
-.filter-btn {
-    background-color: var(--bg-color);
-    border-top: 2px solid #ffffff;
-    border-left: 2px solid #ffffff;
-    border-right: 2px solid #000000;
-    border-bottom: 2px solid #000000;
-    color: #000;
-    padding: 6px 16px;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 0.95rem;
-    transition: background-color var(--transition-fast);
-}
-
-.filter-btn:hover {
-    background-color: #d4d4d4;
-}
-
-.filter-btn:focus-visible {
-    outline: 2px dashed var(--primary-color);
-    outline-offset: 2px;
-}
-
-.filter-btn:active,
-.filter-btn.active {
-    border-top: 2px solid #000000;
-    border-left: 2px solid #000000;
-    border-right: 2px solid #ffffff;
-    border-bottom: 2px solid #ffffff;
-    background-color: #d0d0d0;
-}
-
-.filter-count {
-    display: inline-block;
-    background-color: var(--primary-color);
-    color: #fff;
-    font-size: 0.7rem;
-    padding: 1px 5px;
-    margin-left: 4px;
-    min-width: 18px;
-    text-align: center;
-}
-
-/* ============ CARD GRID ============ */
-.container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 1rem;
-}
-
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 16px;
-}
-
-/* ============ CARDS ============ */
-.card {
-    background-color: var(--bg-color);
-    padding: 1rem;
-    border-top: 2px solid #ffffff;
-    border-left: 2px solid #ffffff;
-    border-right: 3px solid #404040;
-    border-bottom: 3px solid #404040;
-    cursor: pointer;
-    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
-    position: relative;
-}
-
-.card:hover {
-    background-color: #d0d0d0;
-    transform: translateY(-3px);
-    box-shadow: 4px 6px 0px rgba(0, 0, 0, 0.3);
-}
-
-.card:focus-visible {
-    outline: 2px dashed var(--primary-color);
-    outline-offset: 2px;
-}
-
-.card::after {
-    content: "Klikk for detaljer ▸";
-    display: block;
-    font-size: 0.75rem;
-    color: #666;
-    margin-top: 10px;
-    text-align: right;
-}
-
-.card-category {
-    background-color: var(--primary-color);
-    color: white;
-    padding: 2px 5px;
-    font-size: 0.7rem;
-    display: inline-block;
-}
-
-.card h3 {
-    margin: 10px 0;
-    color: #0000ff;
-    text-decoration: underline;
-}
-
-/* ============ NO RESULTS ============ */
-.no-results {
-    text-align: center;
-    padding: 3rem 1rem;
-    color: #555;
-}
-
-.no-results-icon {
-    font-size: 2.5rem;
-    display: block;
-    margin-bottom: 0.5rem;
-}
-
-.no-results-hint {
-    font-size: 0.9rem;
-    color: #888;
-    margin-top: 0.5rem;
-}
-
-/* ============ MODAL ============ */
-.modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-    opacity: 1;
-    transition: opacity var(--transition-med);
-}
-
-.modal-overlay.hidden {
-    opacity: 0;
-    pointer-events: none;
-}
-
-.modal-content {
-    background: var(--bg-color);
-    border: 4px outset #ffffff;
-    padding: 1.5rem;
-    box-shadow: 10px 10px 0px rgba(0, 0, 0, 0.5);
-    max-width: 550px;
-    width: 90%;
-    max-height: 85vh;
-    overflow-y: auto;
-    position: relative;
-    transform: scale(1);
-    transition: transform var(--transition-med);
-}
-
-.modal-overlay.hidden .modal-content {
-    transform: scale(0.95);
-}
-
-.close-btn {
-    position: absolute;
-    top: 6px;
-    right: 8px;
-    background: var(--bg-color);
-    border-top: 2px solid #ffffff;
-    border-left: 2px solid #ffffff;
-    border-right: 2px solid #000;
-    border-bottom: 2px solid #000;
-    font-size: 1.3rem;
-    cursor: pointer;
-    padding: 0 6px;
-    line-height: 1.4;
-}
-
-.close-btn:hover {
-    background-color: #d0d0d0;
-}
-
-.close-btn:focus-visible {
-    outline: 2px dashed var(--primary-color);
-    outline-offset: 2px;
-}
-
-.modal-body hr {
-    border: none;
-    border-top: 2px groove #fff;
-    margin: 1rem 0;
-}
-
-.modal-body h3 {
-    margin-bottom: 0.5rem;
-}
-
-/* ============ BACK TO TOP ============ */
-.back-to-top {
-    position: fixed;
-    bottom: 24px;
-    right: 24px;
-    z-index: 900;
-    background-color: var(--primary-color);
-    color: #ffff00;
-    border: 3px outset #ffffff;
-    font-size: 1.5rem;
-    width: 44px;
-    height: 44px;
-    cursor: pointer;
-    transition: opacity var(--transition-med), transform var(--transition-fast);
-    opacity: 1;
-}
-
-.back-to-top.hidden {
-    opacity: 0;
-    pointer-events: none;
-    transform: translateY(10px);
-}
-
-.back-to-top:hover {
-    background-color: #0000b0;
-}
-
-.back-to-top:focus-visible {
-    outline: 2px dashed #ffff00;
-    outline-offset: 2px;
-}
-
-/* ============ UTILITY ============ */
-.hidden {
-    /* Used by JS for toggling visibility */
-}
-
-/* ============ RESPONSIVE ============ */
-@media (max-width: 600px) {
-    header h1 {
-        font-size: 2rem;
-        letter-spacing: 2px;
-    }
-
-    .search-wrapper {
-        width: 100%;
-    }
-
-    .filters {
-        gap: 4px;
-        padding: 0.75rem 0.5rem;
-    }
-
-    .filter-btn {
-        font-size: 0.85rem;
-        padding: 5px 10px;
-    }
-
-    .grid {
-        grid-template-columns: 1fr;
-    }
-
-    .modal-content {
-        width: 95%;
-        padding: 1rem;
-    }
-}
-
-.card img {
-    max-width: 50%;
-    height: auto;
-}
-
-.modal-body img {
-    max-width: 50%;
-    height: auto;
-}
+    <script src="wjs.js"></script>
+</body>
+</html>
