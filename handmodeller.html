@@ -1,395 +1,421 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestikulering | Didactic Hand Modelling</title>
-    <style>
-        /* --- CSS STYLES --- */
-        :root {
-            --primary-color: #2c3e50;
-            --secondary-color: #3498db;
-            --bg-color: #f8f9fa;
-            --card-bg: #ffffff;
-            --text-color: #333333;
-            --border-radius: 8px;
-            --transition: 0.3s ease;
-        }
+/* --- 90s RETRO CSS STYLES (Improved UX) --- */
+:root {
+    --primary-color: #000080;
+    --secondary-color: #008080;
+    --bg-color: #c0c0c0;
+    --card-bg: #ffffff;
+    --text-color: #000000;
+    --border-radius: 0px;
+    --transition-fast: 0.15s ease;
+    --transition-med: 0.25s ease;
+}
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
-        }
+body {
+    font-family: "Times New Roman", Times, serif;
+    background-color: var(--bg-color);
+    background-image: url('https://www.transparenttextures.com/patterns/cubes.png');
+    color: var(--text-color);
+    line-height: 1.4;
+}
 
-        header {
-            background-color: var(--primary-color);
-            color: white;
-            text-align: center;
-            padding: 3rem 1rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
+/* ============ HEADER ============ */
+header {
+    background-color: var(--primary-color);
+    color: #ffff00;
+    text-align: center;
+    padding: 2rem 1rem;
+    border-bottom: 4px ridge #ffffff;
+}
 
-        header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-        }
+header h1 {
+    font-size: 3rem;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    text-shadow: 3px 3px #000000;
+}
 
-        header p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-            max-width: 600px;
-            margin: 0 auto;
-        }
+header p {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #ffffff;
+    margin-top: 10px;
+}
 
-        /* Importance Section */
-        .importance-section {
-            background-color: var(--card-bg);
-            padding: 3rem 1rem;
-            border-bottom: 2px solid #e1e8ed;
-        }
+/* ============ IMPORTANCE SECTION ============ */
+.importance-section {
+    background-color: var(--bg-color);
+    padding: 2rem 1rem;
+    border: 3px inset #ffffff;
+    margin: 10px;
+}
 
-        .importance-content {
-            max-width: 900px;
-            margin: 0 auto;
-        }
+.importance-content h2 {
+    color: #800000;
+    text-decoration: underline;
+    margin-bottom: 1rem;
+    text-align: center;
+}
 
-        .importance-content h2 {
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-            font-size: 2rem;
-            text-align: center;
-        }
+.importance-content li {
+    background: #ffffff;
+    padding: 1rem;
+    margin-bottom: 10px;
+    border-top: 2px solid #ffffff;
+    border-left: 2px solid #ffffff;
+    border-right: 2px solid #808080;
+    border-bottom: 2px solid #808080;
+}
 
-        .importance-content > p {
-            text-align: center;
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-            color: #555;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
+/* ============ SEARCH BAR ============ */
+.search-container {
+    max-width: 600px;
+    margin: 1.5rem auto 0.5rem;
+    text-align: center;
+    padding: 0 1rem;
+}
 
-        .importance-content ul {
-            list-style-type: none;
-            padding: 0;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
+.search-wrapper {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    width: 80%;
+}
 
-        .importance-content li {
-            background: var(--bg-color);
-            padding: 1.5rem;
-            border-radius: var(--border-radius);
-            border-left: 4px solid var(--secondary-color);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-        }
+.search-icon {
+    position: absolute;
+    left: 8px;
+    font-size: 1rem;
+    pointer-events: none;
+    opacity: 0.5;
+}
 
-        .importance-content li strong {
-            display: block;
-            color: var(--primary-color);
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-        }
+#search-bar {
+    width: 100%;
+    padding: 8px 32px 8px 30px;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 1rem;
+    background-color: #ffffff;
+    border-top: 3px solid #808080;
+    border-left: 3px solid #808080;
+    border-right: 3px solid #ffffff;
+    border-bottom: 3px solid #ffffff;
+    outline: none;
+    transition: box-shadow var(--transition-fast);
+}
 
-        /* Search Bar */
-        .search-container {
-            max-width: 600px;
-            margin: 2rem auto 0;
-            padding: 0 1rem;
-            position: relative;
-            z-index: 101;
-        }
+#search-bar:focus {
+    box-shadow: 0 0 0 2px var(--primary-color);
+}
 
-        #search-bar {
-            width: 100%;
-            padding: 1rem 1.5rem;
-            font-size: 1.1rem;
-            border: 2px solid #e1e8ed;
-            border-radius: 30px;
-            outline: none;
-            transition: var(--transition);
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            font-family: inherit;
-        }
+.search-clear {
+    position: absolute;
+    right: 4px;
+    background: none;
+    border: none;
+    font-size: 1.3rem;
+    cursor: pointer;
+    color: #666;
+    padding: 2px 6px;
+    line-height: 1;
+}
 
-        #search-bar:focus {
-            border-color: var(--secondary-color);
-            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.2);
-        }
+.search-clear:hover {
+    color: #000;
+}
 
-        /* Filtering Navigation */
-        .filters {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 10px;
-            padding: 1.5rem 1rem;
-            background-color: var(--bg-color);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
+.result-count {
+    font-size: 0.85rem;
+    color: #555;
+    margin-top: 6px;
+    min-height: 1.2em;
+}
 
-        .filter-btn {
-            background-color: white;
-            border: 2px solid var(--secondary-color);
-            color: var(--secondary-color);
-            padding: 0.5rem 1.5rem;
-            border-radius: 20px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 1rem;
-            transition: var(--transition);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-        }
+/* ============ FILTER BUTTONS ============ */
+.filters {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 5px;
+    padding: 1rem;
+    background-color: #808080;
+    border: 2px outset #ffffff;
+}
 
-        .filter-btn:hover, .filter-btn.active {
-            background-color: var(--secondary-color);
-            color: white;
-        }
+.filter-btn {
+    background-color: var(--bg-color);
+    border-top: 2px solid #ffffff;
+    border-left: 2px solid #ffffff;
+    border-right: 2px solid #000000;
+    border-bottom: 2px solid #000000;
+    color: #000;
+    padding: 6px 16px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.95rem;
+    transition: background-color var(--transition-fast);
+}
 
-        /* Gesture Grid */
-        .container {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-            min-height: 50vh; /* Keeps footer from jumping up when filtering */
-        }
+.filter-btn:hover {
+    background-color: #d4d4d4;
+}
 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-        }
+.filter-btn:focus-visible {
+    outline: 2px dashed var(--primary-color);
+    outline-offset: 2px;
+}
 
-        /* Individual Cards */
-        .card {
-            background-color: var(--card-bg);
-            border-radius: var(--border-radius);
-            padding: 1.5rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            transition: var(--transition);
-            border-top: 5px solid var(--secondary-color);
-            display: flex;
-            flex-direction: column;
-            animation: fadeIn 0.4s ease;
-        }
+.filter-btn:active,
+.filter-btn.active {
+    border-top: 2px solid #000000;
+    border-left: 2px solid #000000;
+    border-right: 2px solid #ffffff;
+    border-bottom: 2px solid #ffffff;
+    background-color: #d0d0d0;
+}
 
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
-        }
+.filter-count {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: #fff;
+    font-size: 0.7rem;
+    padding: 1px 5px;
+    margin-left: 4px;
+    min-width: 18px;
+    text-align: center;
+}
 
-        .card-category {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--secondary-color);
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-        }
+/* ============ CARD GRID ============ */
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 1rem;
+}
 
-        .card h3 {
-            margin-bottom: 1rem;
-            font-size: 1.4rem;
-            color: var(--primary-color);
-        }
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px;
+}
 
-        .card p {
-            margin-bottom: 0.8rem;
-            font-size: 0.95rem;
-        }
+/* ============ CARDS ============ */
+.card {
+    background-color: var(--bg-color);
+    padding: 1rem;
+    border-top: 2px solid #ffffff;
+    border-left: 2px solid #ffffff;
+    border-right: 3px solid #404040;
+    border-bottom: 3px solid #404040;
+    cursor: pointer;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    position: relative;
+}
 
-        .card strong {
-            color: var(--primary-color);
-        }
+.card:hover {
+    background-color: #d0d0d0;
+    transform: translateY(-3px);
+    box-shadow: 4px 6px 0px rgba(0, 0, 0, 0.3);
+}
 
-        /* No Results Message */
-        #no-results {
-            text-align: center;
-            grid-column: 1 / -1;
-            padding: 2rem;
-            color: #777;
-            font-size: 1.2rem;
-            display: none;
-        }
+.card:focus-visible {
+    outline: 2px dashed var(--primary-color);
+    outline-offset: 2px;
+}
 
-        /* Utility Class for JS Filtering */
-        .hidden {
-            display: none !important;
-        }
+.card::after {
+    content: "Klikk for detaljer ▸";
+    display: block;
+    font-size: 0.75rem;
+    color: #666;
+    margin-top: 10px;
+    text-align: right;
+}
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
-        }
-    </style>
-</head>
-<body>
+.card-category {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 2px 5px;
+    font-size: 0.7rem;
+    display: inline-block;
+}
 
-    <header>
-        <h1>Gestikulering</h1>
-        <p>A Catalog of Didactic Hand Modelling in Science.</p>
-    </header>
+.card h3 {
+    margin: 10px 0;
+    color: #0000ff;
+    text-decoration: underline;
+}
 
-    <section class="importance-section">
-        <div class="importance-content">
-            <h2>Why Use Hand Modelling?</h2>
-            <p>Didactic gesticulation is more than just a presentation style; it is a proven pedagogical strategy grounded in cognitive science. Here is why it works:</p>
-            <ul>
-                <li><strong>Embodied Cognition:</strong> Learning is not strictly a mental process. By tying an abstract scientific concept to a physical movement, students create a physical memory (muscle memory) that makes the information easier to recall.</li>
-                <li><strong>Reduces Cognitive Load:</strong> Abstract concepts heavily tax working memory. Physical models act as spatial anchors, offloading mental strain and allowing students to process complex systems more easily.</li>
-                <li><strong>Instant Formative Assessment:</strong> When a teacher demonstrates a rule and asks the class to mirror it, they can instantly scan the room to see who understands and who needs help.</li>
-                <li><strong>Universal Accessibility:</strong> Gestures transcend language barriers. For visual learners or students with learning differences, a physical model often clicks when verbal explanations fail.</li>
-            </ul>
-        </div>
-    </section>
+/* ============ NO RESULTS ============ */
+.no-results {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: #555;
+}
 
-    <div class="search-container">
-        <input type="text" id="search-bar" placeholder="Search for a concept, e.g., 'waves' or 'enzymes'...">
-    </div>
+.no-results-icon {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: 0.5rem;
+}
 
-    <nav class="filters">
-        <button class="filter-btn active" data-filter="all">All</button>
-        <button class="filter-btn" data-filter="physics">⚛️ Physics</button>
-        <button class="filter-btn" data-filter="chemistry">🧪 Chemistry</button>
-        <button class="filter-btn" data-filter="biology">🧬 Biology</button>
-        <button class="filter-btn" data-filter="earth">🌍 Earth Science</button>
-    </nav>
+.no-results-hint {
+    font-size: 0.9rem;
+    color: #888;
+    margin-top: 0.5rem;
+}
 
-    <div class="container">
-        <div class="grid" id="gesture-grid">
-            
-            <div id="no-results">No hand models found matching your search. Try adjusting your filters!</div>
+/* ============ MODAL ============ */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 1;
+    transition: opacity var(--transition-med);
+}
 
-            <div class="card" data-category="physics">
-                <span class="card-category">Physics</span>
-                <h3>The Right-Hand Rule</h3>
-                <p><strong>The Model:</strong> Point the thumb in the direction of the current. Let the fingers curl inward.</p>
-                <p><strong>The Concept:</strong> Shows the direction of the circular magnetic field around a wire.</p>
-            </div>
-            
-            <div class="card" data-category="physics">
-                <span class="card-category">Physics</span>
-                <h3>Wave Types</h3>
-                <p><strong>The Model:</strong> Snake-like up/down motion (Transverse) vs. pulsing push/pull motion (Longitudinal).</p>
-                <p><strong>The Concept:</strong> Medium movement relative to wave direction (e.g., light vs. sound).</p>
-            </div>
+.modal-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
 
-            <div class="card" data-category="physics">
-                <span class="card-category">Physics</span>
-                <h3>Particle States</h3>
-                <p><strong>The Model:</strong> Fists vibrating together (solid), sliding over each other (liquid), bouncing far apart (gas).</p>
-                <p><strong>The Concept:</strong> The kinetic theory of matter.</p>
-            </div>
+.modal-content {
+    background: var(--bg-color);
+    border: 4px outset #ffffff;
+    padding: 1.5rem;
+    box-shadow: 10px 10px 0px rgba(0, 0, 0, 0.5);
+    max-width: 550px;
+    width: 90%;
+    max-height: 85vh;
+    overflow-y: auto;
+    position: relative;
+    transform: scale(1);
+    transition: transform var(--transition-med);
+}
 
-            <div class="card" data-category="chemistry">
-                <span class="card-category">Chemistry</span>
-                <h3>Chirality</h3>
-                <p><strong>The Model:</strong> Palms up, showing they are mirror images but cannot be perfectly superimposed.</p>
-                <p><strong>The Concept:</strong> Enantiomers and "handedness" in molecular structures.</p>
-            </div>
+.modal-overlay.hidden .modal-content {
+    transform: scale(0.95);
+}
 
-            <div class="card" data-category="chemistry">
-                <span class="card-category">Chemistry</span>
-                <h3>Enzyme "Lock & Key"</h3>
-                <p><strong>The Model:</strong> Hand in a rigid "C" shape docking with a fist from the other hand.</p>
-                <p><strong>The Concept:</strong> Enzyme-substrate specificity.</p>
-            </div>
+.close-btn {
+    position: absolute;
+    top: 6px;
+    right: 8px;
+    background: var(--bg-color);
+    border-top: 2px solid #ffffff;
+    border-left: 2px solid #ffffff;
+    border-right: 2px solid #000;
+    border-bottom: 2px solid #000;
+    font-size: 1.3rem;
+    cursor: pointer;
+    padding: 0 6px;
+    line-height: 1.4;
+}
 
-            <div class="card" data-category="biology">
-                <span class="card-category">Biology</span>
-                <h3>Sliding Filaments</h3>
-                <p><strong>The Model:</strong> Point fingers of both hands together, then slide them deeply between one another.</p>
-                <p><strong>The Concept:</strong> Actin and myosin sliding during muscle contraction.</p>
-            </div>
+.close-btn:hover {
+    background-color: #d0d0d0;
+}
 
-            <div class="card" data-category="biology">
-                <span class="card-category">Biology</span>
-                <h3>Phagocytosis</h3>
-                <p><strong>The Model:</strong> A "pac-man" hand wrapping around a small object and pulling inward.</p>
-                <p><strong>The Concept:</strong> Cell membrane engulfing large particles.</p>
-            </div>
+.close-btn:focus-visible {
+    outline: 2px dashed var(--primary-color);
+    outline-offset: 2px;
+}
 
-            <div class="card" data-category="earth">
-                <span class="card-category">Earth Science</span>
-                <h3>Tectonic Plates</h3>
-                <p><strong>The Model:</strong> Flat hands sliding apart (Divergent), pushing to buckle (Convergent), or rubbing edges (Transform).</p>
-                <p><strong>The Concept:</strong> Plate boundaries and resulting geography.</p>
-            </div>
+.modal-body hr {
+    border: none;
+    border-top: 2px groove #fff;
+    margin: 1rem 0;
+}
 
-        </div>
-    </div>
+.modal-body h3 {
+    margin-bottom: 0.5rem;
+}
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const filterBtns = document.querySelectorAll('.filter-btn');
-            const cards = document.querySelectorAll('.card');
-            const searchBar = document.getElementById('search-bar');
-            const noResultsMsg = document.getElementById('no-results');
+/* ============ BACK TO TOP ============ */
+.back-to-top {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 900;
+    background-color: var(--primary-color);
+    color: #ffff00;
+    border: 3px outset #ffffff;
+    font-size: 1.5rem;
+    width: 44px;
+    height: 44px;
+    cursor: pointer;
+    transition: opacity var(--transition-med), transform var(--transition-fast);
+    opacity: 1;
+}
 
-            // Store current states
-            let currentCategory = 'all';
-            let searchQuery = '';
+.back-to-top.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(10px);
+}
 
-            // Main filtering function
-            function updateFilters() {
-                let visibleCount = 0;
+.back-to-top:hover {
+    background-color: #0000b0;
+}
 
-                cards.forEach(card => {
-                    // 1. Check if card matches category filter
-                    const matchesCategory = (currentCategory === 'all' || card.getAttribute('data-category') === currentCategory);
-                    
-                    // 2. Check if card text matches search query
-                    const cardText = card.textContent.toLowerCase();
-                    const matchesSearch = cardText.includes(searchQuery);
+.back-to-top:focus-visible {
+    outline: 2px dashed #ffff00;
+    outline-offset: 2px;
+}
 
-                    // 3. Apply visibility
-                    if (matchesCategory && matchesSearch) {
-                        card.classList.remove('hidden');
-                        visibleCount++;
-                    } else {
-                        card.classList.add('hidden');
-                    }
-                });
+/* ============ UTILITY ============ */
+.hidden {
+    /* Used by JS for toggling visibility */
+}
 
-                // Show or hide "No Results" message
-                if (visibleCount === 0) {
-                    noResultsMsg.style.display = 'block';
-                } else {
-                    noResultsMsg.style.display = 'none';
-                }
-            }
+/* ============ RESPONSIVE ============ */
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 2rem;
+        letter-spacing: 2px;
+    }
 
-            // Listen for Category Button Clicks
-            filterBtns.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    // Update active styling
-                    filterBtns.forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
+    .search-wrapper {
+        width: 100%;
+    }
 
-                    // Update state and run filter
-                    currentCategory = btn.getAttribute('data-filter');
-                    updateFilters();
-                });
-            });
+    .filters {
+        gap: 4px;
+        padding: 0.75rem 0.5rem;
+    }
 
-            // Listen for Search Bar typing
-            searchBar.addEventListener('input', (e) => {
-                searchQuery = e.target.value.toLowerCase().trim();
-                updateFilters();
-            });
-        });
-    </script>
-</body>
-</html>
+    .filter-btn {
+        font-size: 0.85rem;
+        padding: 5px 10px;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .modal-content {
+        width: 95%;
+        padding: 1rem;
+    }
+}
+
+.card img {
+    max-width: 50%;
+    height: auto;
+}
+
+.modal-body img {
+    max-width: 50%;
+    height: auto;
+}
