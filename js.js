@@ -4,34 +4,17 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             id: 'p1',
             category: 'physics',
-            categoryName: 'Physics',
+            categoryName: 'Naturfag',
             title: 'Magnet Felt',
             model: '<br><img src="images/magnetic Field.JPG">',
             concept: 'Håndmodellen viser retningen av kraften hvis to magnetfelt / partikler møter hverandre',
             extraInfo: ''
         },
-        {
-            id: 'p2',
-            category: 'physics',
-            categoryName: 'Physics',
-            title: '',
-            model: '',
-            concept: '',
-            extraInfo: ''
-        },
-        {
-            id: 'p3',
-            category: 'physics',
-            categoryName: 'Physics',
-            title: '',
-            model: '',
-            concept: '',
-            extraInfo: ''
-        },
+   
         {
             id: 'c1',
             category: 'chemistry',
-            categoryName: 'Chemistry',
+            categoryName: 'Naturfag',
             title: 'Fast Form',
             model: '<br><img src="Fast_Form.png">',
             concept: 'Nevene illustrerer hvodan i fast form så er partiklene rigide.',
@@ -40,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             id: 'c2',
             category: 'chemistry',
-            categoryName: 'Chemistry',
+            categoryName: 'Naturfag',
             title: 'Vannform',
             model: '<br><img src="Water_form.png">',
             concept: 'Nevene glir innom hverandre for å illustrere den dynamiske formen til vann.',
@@ -49,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             id: 'c3',
             category: 'chemistry',
-            categoryName: 'Chemistry',
+            categoryName: 'Naturfag',
             title: 'Gassform',
             model: '<br><img src="Water_form.png">',
             concept: 'Nevene beveger seg raskt og sporadisk i store bevegelser',
@@ -58,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
          {
             id: 'c4',
             category: 'chemistry',
-            categoryName: 'Chemistry',
+            categoryName: 'Naturfag',
             title: '',
             model: '<br><img src="Water_form.png">',
             concept: 'Nevene beveger seg raskt og sporadisk i store bevegelser',
@@ -67,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             id: 'b1',
             category: 'biology',
-            categoryName: 'Biology',
+            categoryName: 'Naturfag',
             title: 'Eggstokker',
             model: 'Image',
             concept: 'Stå baklengs mot elevene, hold opp hendene på hver side. Høyre og venstre arm er eggledere mens hendene helt utstrakt er eggstokkene. ',
@@ -76,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             id: 'b2',
             category: 'biology',
-            categoryName: 'Biology',
+            categoryName: 'Naturfag',
             title: 'Dendritt',
             model: '',
             concept: 'Hold ut armen og åpne hånden. Fingrene er dendritter som mottar signaler. Mens armen er aksonet.',
@@ -85,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
           {
             id: 'b3',
             category: 'biology',
-            categoryName: 'Biology',
+            categoryName: 'Naturfag',
             title: 'Hjerte',
             model: '',
             concept: 'Lag to "kopper" med nevene. Sett håndflatene sammen og la det være hulrom mellom hendene. ',
@@ -94,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             id: 'e1',
             category: 'earth',
-            categoryName: 'Earth Science',
+            categoryName: 'Naturfag',
             title: '',
             model: '',
             concept: '',
