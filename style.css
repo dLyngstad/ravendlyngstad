@@ -54,24 +54,37 @@ header p {
     padding: 2rem 1rem;
     border: 3px inset #ffffff;
     margin: 10px;
+    text-align: center;
+}
+
+.importance-content {
+    max-width: 700px;
+    margin: 0 auto;
 }
 
 .importance-content h2 {
     color: #800000;
     text-decoration: underline;
     margin-bottom: 1rem;
-    text-align: center;
+}
+
+.importance-content p {
+    margin-bottom: 1rem;
+}
+
+.importance-content ul {
+    list-style: none;
+    padding: 0;
 }
 
 .importance-content li {
-ackground: #ffffff;
+    background: #ffffff;
     padding: 1.2rem 1.5rem;
     margin-bottom: 10px;
     border-top: 2px solid #ffffff;
     border-left: 2px solid #ffffff;
     border-right: 2px solid #808080;
     border-bottom: 2px solid #808080;
-    text-align: left;
     line-height: 1.7;
 }
 
