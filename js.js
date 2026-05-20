@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
             title: 'Magnet Felt',
             model: '<br><img src="bilder/hand7.JPG">',
             concept: 'Håndmodellen viser retningen av kraften hvis to magnetfelt / partikler møter hverandre',
-            extraInfo: ''
+            extraInfo: '-'
         },
    
         {
@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
             title: 'Vannform',
             model: '<br><img src="bilder/hand9.png">',
             concept: 'Nevene glir innom hverandre for å illustrere den dynamiske formen til vann.',
-            extraInfo: ''
+            extraInfo: '-'
         },
         {
             id: 'c3',
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
             title: 'Gassform',
             model: '<br><img src="bilder/hand10.png">',
             concept: 'Den ene neven beveger seg raskt og sporadisk vekk fra den andre.',
-            extraInfo: ''
+            extraInfo: '-'
         },
         {
             id: 'b2',
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
             title: 'Dendritt',
             model: '<br><img src="bilder/hand5.JPG">',
             concept: 'Hold ut armen og åpne hånden. Fingrene er dendritter som mottar signaler. Mens armen er aksonet.',
-            extraInfo: ''
+            extraInfo: '-'
         },
           {
             id: 'b3',
