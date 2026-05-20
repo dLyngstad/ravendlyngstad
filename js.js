@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
             category: 'physics',
             categoryName: 'Naturfag',
             title: 'Magnet Felt',
-            model: '<br><img src="images/magnetic Field.JPG">',
+            model: '<br><img src="bilder/hand7.JPG">',
             concept: 'Håndmodellen viser retningen av kraften hvis to magnetfelt / partikler møter hverandre',
             extraInfo: ''
         },
