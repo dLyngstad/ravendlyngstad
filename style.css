@@ -435,3 +435,49 @@ header p {
     max-width: 50%;
     height: auto;
 }
+/* ============ THEORY SECTION ============ */
+.theory-section {
+    background-color: var(--bg-color);
+    padding: 2rem 1rem;
+    border: 3px inset #ffffff;
+    margin: 10px;
+    text-align: center;
+}
+
+.theory-content {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.theory-content h2 {
+    color: #800000;
+    text-decoration: underline;
+    margin-bottom: 1rem;
+}
+
+.theory-content ul {
+    list-style: none;
+    padding: 0;
+}
+
+.theory-content li {
+    background: #ffffff;
+    padding: 0.8rem 1.2rem;
+    margin-bottom: 6px;
+    border-top: 2px solid #ffffff;
+    border-left: 2px solid #ffffff;
+    border-right: 2px solid #808080;
+    border-bottom: 2px solid #808080;
+    text-align: left;
+    line-height: 1.6;
+}
+
+.theory-content a {
+    color: #0000ff;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.theory-content a:hover {
+    color: #800000;
+}
