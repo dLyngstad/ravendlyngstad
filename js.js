@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
             category: 'chemistry',
             categoryName: 'Naturfag',
             title: 'Fast Form',
-            model: '<br><img src="bilder/Fast_Form.png">',
+            model: '<br><img src="bilder/hand8.png">',
             concept: 'Nevene illustrerer hvodan i fast form så er partiklene rigide.',
             extraInfo: 'Husk at i fast form er det fortsatt bevegelse i partiklene.'
         },
