@@ -436,34 +436,10 @@ header p {
     height: auto;
 }
 /* ============ THEORY SECTION ============ */
-.theory-section {
-    background-color: var(--bg-color);
-    padding: 2rem 1rem;
-    border: 3px inset #ffffff;
-    margin: 10px;
-    text-align: center;
-}
-
-.theory-content {
-    max-width: 700px;
-    margin: 0 auto;
-}
-
-.theory-content h2 {
-    color: #800000;
-    text-decoration: underline;
-    margin-bottom: 1rem;
-}
-
-.theory-content ul {
-    list-style: none;
-    padding: 0;
-}
-
 .theory-content li {
     background: #ffffff;
-    padding: 0.8rem 1.2rem;
-    margin-bottom: 6px;
+    padding: 1rem 1.2rem;
+    margin-bottom: 8px;
     border-top: 2px solid #ffffff;
     border-left: 2px solid #ffffff;
     border-right: 2px solid #808080;
@@ -472,12 +448,33 @@ header p {
     line-height: 1.6;
 }
 
-.theory-content a {
+.theory-content li > a {
     color: #0000ff;
     font-weight: bold;
+    font-size: 1.1rem;
     text-decoration: underline;
 }
 
-.theory-content a:hover {
+.theory-content li > a:hover {
     color: #800000;
+}
+
+.theory-content li p {
+    margin: 0.4rem 0;
+    color: #333;
+    font-size: 0.95rem;
+}
+
+.theory-content .doi {
+    font-size: 0.8rem;
+    color: #666;
+}
+
+.theory-content .doi a {
+    color: #006666;
+    text-decoration: none;
+}
+
+.theory-content .doi a:hover {
+    text-decoration: underline;
 }
