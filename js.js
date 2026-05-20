@@ -55,16 +55,8 @@ document.addEventListener('DOMContentLoaded', () => {
             model: '<br><img src="bilder/hand3.JPG">',
             concept: 'Lag to "kopper" med nevene. Sett håndflatene sammen og la det være hulrom mellom hendene. ',
             extraInfo: 'Man kan simulere "pump" med hjerte ved å klemme sammen hendene i rytmiske puls.<br><img src="bilder/hand4.JPG">'
-        },
-        {
-            id: 'e1',
-            category: 'earth',
-            categoryName: 'Naturfag',
-            title: '',
-            model: '',
-            concept: '',
-            extraInfo: ''
         }
+
     ];
 
     // --- 2. DOM ELEMENTS ---
