@@ -52,9 +52,9 @@ document.addEventListener('DOMContentLoaded', () => {
             category: 'biology',
             categoryName: 'Naturfag',
             title: 'Hjerte',
-            model: '<br><img src="bilder/hand3.JPG">',
+            model: '<br><img src="bilder/hand3.JPG">,<img src="bilder/hand4.JPG">',
             concept: 'Lag to "kopper" med nevene. Sett håndflatene sammen og la det være hulrom mellom hendene. ',
-            extraInfo: 'Man kan simulere "pump" med hjerte ved å klemme sammen hendene i rytmiske puls.<br><img src="bilder/hand4.JPG">'
+            extraInfo: 'Man kan simulere "pump" med hjerte ved å klemme sammen hendene i rytmiske puls.'
         }
 
     ];
