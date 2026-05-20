@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
             category: 'chemistry',
             categoryName: 'Naturfag',
             title: 'Vannform',
-            model: '<br><img src="bilder/Water_form.png">',
+            model: '<br><img src="bilder/hand9.png">',
             concept: 'Nevene glir innom hverandre for å illustrere den dynamiske formen til vann.',
             extraInfo: ''
         },
@@ -34,26 +34,8 @@ document.addEventListener('DOMContentLoaded', () => {
             category: 'chemistry',
             categoryName: 'Naturfag',
             title: 'Gassform',
-            model: '<br><img src="bilder/Water_form.png">',
-            concept: 'Nevene beveger seg raskt og sporadisk i store bevegelser',
-            extraInfo: ''
-        },
-         {
-            id: 'c4',
-            category: 'chemistry',
-            categoryName: 'Naturfag',
-            title: '',
-            model: '<br><img src="bilder/Water_form.png">',
-            concept: 'Nevene beveger seg raskt og sporadisk i store bevegelser',
-            extraInfo: ''
-        },
-        {
-            id: 'b1',
-            category: 'biology',
-            categoryName: 'Naturfag',
-            title: 'Eggstokker',
-            model: 'Image',
-            concept: 'Stå baklengs mot elevene, hold opp hendene på hver side. Høyre og venstre arm er eggledere mens hendene helt utstrakt er eggstokkene. ',
+            model: '<br><img src="bilder/hand10.png">',
+            concept: 'Den ene neven beveger seg raskt og sporadisk vekk fra den andre.',
             extraInfo: ''
         },
         {
@@ -61,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
             category: 'biology',
             categoryName: 'Naturfag',
             title: 'Dendritt',
-            model: '',
+            model: '<br><img src="bilder/hand5.JPG">',
             concept: 'Hold ut armen og åpne hånden. Fingrene er dendritter som mottar signaler. Mens armen er aksonet.',
             extraInfo: ''
         },
@@ -70,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
             category: 'biology',
             categoryName: 'Naturfag',
             title: 'Hjerte',
-            model: '',
+            model: '<br><img src="bilder/hand3.JPG"><br><img src="bilder/hand4.JPG">',
             concept: 'Lag to "kopper" med nevene. Sett håndflatene sammen og la det være hulrom mellom hendene. ',
             extraInfo: 'Man kan simulere "pump" med hjerte ved å klemme sammen hendene i rytmiske puls.'
         },
