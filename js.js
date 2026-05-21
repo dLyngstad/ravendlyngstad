@@ -121,8 +121,8 @@ document.addEventListener('DOMContentLoaded', () => {
     <p><strong>Modellen:</strong> ${item.model || '–'}</p>
     <p><strong>Konseptet:</strong> ${item.concept || '–'}</p>
     <div class="card-buttons">
-        <button class="card-btn model-btn">Klikk her for digitale og fysiske modeller om dette konseptet</button>
-        <button class="card-btn reasoning-btn">Faglig begrunnelse for modellen</button>
+        <button class="card-btn model-btn">Klikk her for digitale og fysiske supplementerende modeller om dette konseptet</button>
+        <button class="card-btn reasoning-btn">Se faglig begrunnelse for modellen</button>
     </div>
 `;
             // Open modal on click or Enter/Space
