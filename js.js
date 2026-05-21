@@ -116,12 +116,15 @@ document.addEventListener('DOMContentLoaded', () => {
             card.setAttribute('aria-label', `${item.title || 'Uten tittel'} – ${item.categoryName}. Klikk for detaljer.`);
 
             card.innerHTML = `
-                <span class="card-category">${item.categoryName}</span>
-                <h3>${item.title || '(Uten tittel)'}</h3>
-                <p><strong>Modellen:</strong> ${item.model || '–'}</p>
-                <p><strong>Konseptet:</strong> ${item.concept || '–'}</p>
-            `;
-
+    <span class="card-category">${item.categoryName}</span>
+    <h3>${item.title || '(Uten tittel)'}</h3>
+    <p><strong>Modellen:</strong> ${item.model || '–'}</p>
+    <p><strong>Konseptet:</strong> ${item.concept || '–'}</p>
+    <div class="card-buttons">
+        <button class="card-btn model-btn">Klikk her for digitale og fysiske modeller om dette konseptet</button>
+        <button class="card-btn reasoning-btn">Faglig begrunnelse for modellen</button>
+    </div>
+`;
             // Open modal on click or Enter/Space
             card.addEventListener('click', () => openModal(item));
             card.addEventListener('keydown', (e) => {
