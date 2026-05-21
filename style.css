@@ -507,3 +507,38 @@ header p {
 .theory-content .doi a:hover {
     text-decoration: underline;
 }
+
+/* ============ CARD BUTTONS ============ */
+.card-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.card-btn {
+    background-color: #000080;
+    color: #ffff00;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    font-size: 0.85rem;
+    padding: 8px 14px;
+    cursor: pointer;
+    border: 3px outset #ffffff;
+    letter-spacing: 0.5px;
+    text-align: center;
+    transition: background-color 0.15s ease;
+}
+
+.card-btn:hover {
+    background-color: #0000b0;
+}
+
+.reasoning-btn {
+    background-color: #800000;
+    color: #ffffff;
+}
+
+.reasoning-btn:hover {
+    background-color: #a00000;
+}
