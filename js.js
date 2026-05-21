@@ -55,8 +55,16 @@ document.addEventListener('DOMContentLoaded', () => {
             model: '<br><img src="bilder/hand3.JPG">,<img src="bilder/hand4.JPG">',
             concept: 'Lag to "kopper" med nevene. Sett håndflatene sammen og la det være hulrom mellom hendene. ',
             extraInfo: 'Man kan simulere "pump" med hjerte ved å klemme sammen hendene i rytmiske puls.'
+        },
+       {
+            id: 'c1',
+            category: 'chemistry',
+            categoryName: 'Naturfag',
+            title: 'Kjemisk reaksjon',
+            model: '<br><img src="bilder/hand8.JPG">, <img src="bilder/hand1.JPG">',
+            concept: 'Nevene illustrerer hvodan i fast form så er partiklene rigide.',
+            extraInfo: 'I en ekte kjemisk reaksjon vil ikke to stoffer bare koble seg sammen. <br> De vil også endre karakter og struktur. <br> Modellen kan skape misoppfatninger, og derfor med fordel forbedres.'
         }
-
     ];
 
     // --- 2. DOM ELEMENTS ---
