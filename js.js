@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
             categoryName: 'Naturfag',
             title: 'Kjemisk reaksjon',
             model: '<br><img src="bilder/hand8.JPG">, <img src="bilder/hand1.JPG">',
-            concept: 'Et håndmodell til videre forbedring som tar sikte på å illustrere en kjemisk reaksjon.',
+            concept: 'Et håndmodell til videre forbedring som tar sikte på å illustrere når en kjemisk reaksjon skjer og ikke skjer.',
             extraInfo: 'I en ekte kjemisk reaksjon vil ikke to stoffer bare koble seg sammen. <br> De vil også endre karakter og struktur. <br> Modellen kan skape misoppfatninger, og derfor med fordel forbedres.'
         }
     ];
