@@ -275,6 +275,48 @@
 }
 
 
+/* -- PLEIN AIR-BILDE NEDERST PÅ SIDEN -- */
+.plein-air {
+  padding-top: 0; /* Kontakt-seksjonen over har allerede luft under seg */
+}
+
+.plein-air figure {
+  margin: 0;
+}
+
+.plein-air img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;      /* Bredt utsnitt på PC: maleriet foran motivet */
+  object-fit: cover;          /* Beskjærer i stedet for å strekke bildet */
+  object-position: 50% 45%;   /* Hvilken del av bildet som vises */
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  cursor: zoom-in;            /* Klikk åpner hele bildet i zoom-visningen */
+}
+
+.plein-air figcaption {
+  margin-top: 0.75rem;
+  color: #666;
+  font-size: 0.95rem;
+}
+
+.plein-air-label {
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #333;
+}
+
+/* På mobil vises hele bildet, med himmelen og paletten */
+@media (max-width: 600px) {
+  .plein-air img {
+    aspect-ratio: 3 / 4;
+  }
+}
+
+
 
 
 
@@ -385,6 +427,15 @@
     <h2>Kontakt</h2>
     <p>Kontakt: <a href="mailto:ravendlyngstad@gmail.com">Send en mail</a></p>
     <P>Gjerne ta kontakt</P>
+  </section>
+
+  <!-- Plein air-bilde nederst. Klikk på bildet åpner hele bildet i zoom-visningen. -->
+  <section id="plein-air" class="plein-air">
+    <figure>
+      <img class="lightbox-img" src="images/plein_air.jpg" width="1018" height="1357" loading="lazy"
+           alt="Staffeli med maleriet ute på jordet en høstdag, foran landskapet det forestiller">
+      <figcaption><span class="plein-air-label">Plein air</span> – malt ute, rett foran motivet</figcaption>
+    </figure>
   </section>
 
   <footer>
